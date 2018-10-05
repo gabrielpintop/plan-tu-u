@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <div className="container container-fluid">
+        <div className="container container-fluid mt-3">
           <Switch>
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />

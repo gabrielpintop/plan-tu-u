@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import Beneficio from './Beneficio.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Beneficios } from '../api/beneficios.js';
@@ -26,11 +27,12 @@ class CatalogoBeneficios extends Component {
     const beneficio = this.beneficioInput.current.value;
     const puntos = this.puntosInput.current.value;
 
-    Beneficios.insert({
-      beneficio: beneficio,
-      puntosRequeridos: puntos,
-      createdAt: new Date() // current time
-    });
+    let usuario = {
+      codigo: 201515275,
+      rol: 'adminPTU'
+    };
+
+    Meteor.call('beneficios.insertar', beneficio, Number(puntos), usuario);
 
     // Clear form
     this.beneficioInput.current.value = '';
@@ -47,14 +49,18 @@ class CatalogoBeneficios extends Component {
   agregarBeneficio() {
     if (this.state.botonAgregarBeneficio) {
       return (
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={this.toggleFormAgregarBeneficios}
-        >
-          <i className="fas fa-plus" />
-          &nbsp;Agregar beneficio
-        </button>
+        <div className="text-center">
+          <hr />
+          <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={this.toggleFormAgregarBeneficios}
+          >
+            <i className="fas fa-plus" />
+            &nbsp;Agregar beneficio
+          </button>
+          <hr />
+        </div>
       );
     }
   }
@@ -69,9 +75,9 @@ class CatalogoBeneficios extends Component {
   formCrearBeneficio() {
     if (this.state.formCrearBeneficio) {
       return (
-        <div className="div">
+        <div className="col-12">
           <hr />
-          <h2>Agregar un nuevo beneficio</h2>
+          <h5>Agregar un nuevo beneficio</h5>
           <form onSubmit={this.handleCrearBeneficioSubmit.bind(this)}>
             <div className="form-group">
               <label htmlFor="descripcionBeneficio">
@@ -81,7 +87,7 @@ class CatalogoBeneficios extends Component {
               <textarea
                 id="descripcionBeneficio"
                 className="form-control"
-                rows="3"
+                rows="2"
                 type="text"
                 ref={this.beneficioInput}
                 minLength="4"
@@ -96,17 +102,20 @@ class CatalogoBeneficios extends Component {
                 type="number"
                 ref={this.puntosInput}
                 min="0"
+                pattern="\d+"
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary mr-1">
-              Crear beneficio
+            <button type="submit" className="btn btn-success mr-1">
+              <i className="far fa-check-circle" />
+              &nbsp;Crear beneficio
             </button>
             <button
               className="btn btn-danger ml-1"
               onClick={this.toggleFormAgregarBeneficios}
             >
-              Cancelar
+              <i className="far fa-times-circle" />
+              &nbsp;Cancelar
             </button>
           </form>
           <hr />
@@ -117,16 +126,22 @@ class CatalogoBeneficios extends Component {
 
   render() {
     return (
-      <div>
-        {this.agregarBeneficio()}
-
-        <div className="row">
-          <div className="col-12">{this.formCrearBeneficio()}</div>
-          <div className="col-12">
-            <h2>Catálogo de Beneficios</h2>
+      <div className="row">
+        <div className="col-12 no-gutters">
+          <div className="bg-uniandes text-light">
+            <br />
+            <h3 className="text-center">&nbsp;Catálogo de Beneficios&nbsp;</h3>
+            <br />
           </div>
         </div>
-        <ul>{this.renderBeneficios()}</ul>
+        <div className="col-12">
+          {this.agregarBeneficio()}
+          {this.formCrearBeneficio()}
+        </div>
+
+        <div className="col-12">
+          <ul>{this.renderBeneficios()}</ul>
+        </div>
       </div>
     );
   }
