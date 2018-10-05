@@ -1,8 +1,11 @@
 body {
-  padding: 10px;
-  font-family: sans-serif;
+  width: 100%;
+  overflow-x: hidden;
 }
 
+html {
+  overflow-x: hidden;
+}
 
 /* Texto responsive  */
 @media (max-width: 576px) {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-// Task component - represents a single todo item
-export default class Task extends Component {
+export default class Beneficio extends Component {
   render() {
     return (
       <li>
