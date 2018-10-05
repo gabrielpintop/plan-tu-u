@@ -12,12 +12,23 @@ class CatalogoBeneficios extends Component {
 
     this.state = {
       botonAgregarBeneficio: true,
-      formCrearBeneficio: false
+      formCrearBeneficio: false,
+      beneficiosGratuitos: []
     };
 
     this.toggleFormAgregarBeneficios = this.toggleFormAgregarBeneficios.bind(
       this
     );
+
+    this.beneficiosSettings = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      varibleWidth: true,
+      dots: true
+    };
   }
 
   handleCrearBeneficioSubmit(event) {
@@ -40,8 +51,25 @@ class CatalogoBeneficios extends Component {
     this.toggleFormAgregarBeneficios();
   }
 
-  renderBeneficios() {
-    return this.props.beneficios.map(beneficio => (
+  renderBeneficios(min, max) {
+    let beneficios = this.props.beneficios;
+
+    if (max !== -1 && min != -1) {
+      beneficios = beneficios.filter(
+        beneficio =>
+          beneficio.puntosRequeridos > min && beneficio.puntosRequeridos < max
+      );
+    } else if (max !== -1) {
+      beneficios = beneficios.filter(
+        beneficio => beneficio.puntosRequeridos < max
+      );
+    } else if (min !== -1) {
+      beneficios = beneficios.filter(
+        beneficio => beneficio.puntosRequeridos > min
+      );
+    }
+
+    return beneficios.map(beneficio => (
       <Beneficio key={beneficio._id} beneficio={beneficio} />
     ));
   }
@@ -130,7 +158,9 @@ class CatalogoBeneficios extends Component {
         <div className="col-12 no-gutters">
           <div className="bg-uniandes text-light">
             <br />
-            <h3 className="text-center">&nbsp;Catálogo de Beneficios&nbsp;</h3>
+            <h3 className="text-center font-weight-bold">
+              &nbsp;Catálogo de Beneficios&nbsp;
+            </h3>
             <br />
           </div>
         </div>
@@ -140,7 +170,47 @@ class CatalogoBeneficios extends Component {
         </div>
 
         <div className="col-12">
-          <ul>{this.renderBeneficios()}</ul>
+          <div className="bg-uniandes text-light rounded-top">
+            <br />
+            <h4 className="text-center">&nbsp;Beneficios gratuitos&nbsp;</h4>
+            <br />
+          </div>
+          <ul className="list-group">{this.renderBeneficios(-1, 1)}</ul>
+          <hr />
+        </div>
+
+        <div className="col-12">
+          <div className="bg-bronce text-light rounded-top">
+            <br />
+            <h4 className="text-center">
+              &nbsp;Beneficios bronce (1 - 100)&nbsp;
+            </h4>
+            <br />
+          </div>
+          <ul className="list-group">{this.renderBeneficios(0, 101)}</ul>
+          <hr />
+        </div>
+
+        <div className="col-12">
+          <div className="bg-plata text-light rounded-top">
+            <br />
+            <h4 className="text-center">
+              &nbsp;Beneficios plata (101 - 500)&nbsp;
+            </h4>
+            <br />
+          </div>
+          <ul className="list-group">{this.renderBeneficios(100, 501)}</ul>
+          <hr />
+        </div>
+
+        <div className="col-12">
+          <div className="bg-oro text-light rounded-top">
+            <br />
+            <h4 className="text-center">&nbsp;Beneficios oro (+500)&nbsp;</h4>
+            <br />
+          </div>
+          <ul className="list-group">{this.renderBeneficios(500, -1)}</ul>
+          <hr />
         </div>
       </div>
     );

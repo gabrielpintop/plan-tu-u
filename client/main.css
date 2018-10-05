@@ -67,6 +67,10 @@ html {
   background-color: #fcca1a;
 }
 
+.text-uniandes {
+  color: #fcca1a;
+}
+
 .s-300-px {
   width: 220px;
   height: 220px;
@@ -84,4 +88,28 @@ html {
   color: white !important;
   background-color: #ffc107;
   border-color: #ffc107;
+}
+
+.bg-gratuitos {
+  background-color: #ffcf40;
+}
+
+.bg-bronce {
+  background-color: #cd7f32;
+}
+
+.bg-plata {
+  background-color: #b0b8b9;
+}
+
+.bg-oro {
+  background-color: #ffbf00;
+}
+
+.slick-prev:before {
+  color: #ffbf00 !important;
+}
+
+.slick-next:before {
+  color: #ffbf00 !important;
 }
