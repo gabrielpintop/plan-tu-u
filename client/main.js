@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  Component
+} from 'react';
 import './main.html';
 import {
   Meteor
@@ -7,8 +9,4 @@ import {
   render
 } from 'react-dom';
 
-import App from '../imports/ui/App.jsx';
-
-Meteor.startup(() => {
-  render( < App / > , document.getElementById('render-target'));
-});
+import '../imports/ui/Routes.jsx';

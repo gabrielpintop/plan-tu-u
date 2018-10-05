@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light py-md-2">
+      <nav className="navbar navbar-expand-md navbar-light bg-light py-md-2">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            <img
-              src="/planTuULogo.png"
-              className="d-inline-block align-top"
-              alt="Plan Tú U Logo"
-              width="60px"
-            />
-          </a>
+          <Link to={'/'} style={{ textDecoration: 'none' }}>
+            <div className="navbar-brand">
+              <img
+                src="/planTuULogo.png"
+                className="d-inline-block align-top"
+                alt="Plan Tú U Logo"
+                width="60px"
+              />
+            </div>
+          </Link>
           <button
             className="navbar-toggler custom-toggler"
             type="button"
@@ -25,25 +28,9 @@ export default class Navbar extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div id="navbarNavDropdown" className="navbar-collapse collapse">
-            <ul className="navbar-nav mx-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">
-                  Home <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-            </ul>
+            <ul className="navbar-nav mx-auto" />
             <ul className="navbar-nav">
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="http://example.com"
@@ -65,15 +52,15 @@ export default class Navbar extends Component {
                     Another action
                   </a>
                 </div>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="{{ url('/login') }}">
-                  Login
+                  Iniciar sesión
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="{{ url('/register') }}">
-                  Register
+                  Registrarse
                 </a>
               </li>
             </ul>

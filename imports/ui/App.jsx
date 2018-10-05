@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CatalogoBeneficios from './CatalogoBeneficios.jsx';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
+import Inicio from './Inicio.jsx';
 
 class App extends Component {
   render() {
@@ -8,11 +10,11 @@ class App extends Component {
       <div>
         <Navbar />
         <div className="container container-fluid">
-          <header>
-            <h1>Beneficios Uniandes</h1>
-          </header>
-
-          <CatalogoBeneficios />
+          <Switch>
+            <Route exact path="/" component={Inicio} />
+            <Route exact path="/beneficios" component={CatalogoBeneficios} />
+            <Redirect from="*" to="/" />
+          </Switch>
         </div>
       </div>
     );
