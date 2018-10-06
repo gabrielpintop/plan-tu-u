@@ -29,8 +29,7 @@ class Login extends Component {
         if (err) {
           alert(err.error);
         } else {
-          // Encriptar la identificación y devolverla
-          localStorage.setItem('PTUusuario', res.identificacion);
+          localStorage.setItem('PTUusuario', res);
           window.location.reload();
         }
       }
@@ -71,13 +70,13 @@ class Login extends Component {
             <div className="modal-body">
               <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                  <label htmlFor="registroInputCorreo">
+                  <label htmlFor="loginInputCorreo">
                     <b>Correo electrónico</b>
                   </label>
                   <input
                     type="mail"
                     className="form-control"
-                    id="registroInputCorreo"
+                    id="loginInputCorreo"
                     defaultValue="@uniandes.edu.co"
                     ref={this.correoInput}
                     minLength="4"
@@ -86,13 +85,13 @@ class Login extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="registroInputClave">
+                  <label htmlFor="loginInputClave">
                     <b>Contraseña</b>
                   </label>
                   <input
                     type="password"
                     className="form-control"
-                    id="registroInputClave"
+                    id="loginInputClave"
                     ref={this.claveInput}
                     minLength="8"
                     maxLength="35"

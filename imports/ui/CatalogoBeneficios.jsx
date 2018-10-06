@@ -13,22 +13,36 @@ class CatalogoBeneficios extends Component {
     this.state = {
       botonAgregarBeneficio: false,
       formCrearBeneficio: false,
-      usuario: localStorage.getItem('PTUusuario')
+      token: localStorage.getItem('PTUusuario'),
+      admin: false,
+      usuario: null
     };
-
-    this.verificarPermisos();
 
     this.toggleFormAgregarBeneficios = this.toggleFormAgregarBeneficios.bind(
       this
     );
   }
 
-  verificarPermisos() {
-    if (this.state.usuario && this.state.usuario.rol === 'adminPTU') {
-      this.setState({
-        botonAgregarBeneficio: true
-      });
-    }
+  componentDidMount() {
+    Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
+      if (err) {
+        alert(err.error);
+      } else if (res) {
+        console.log(res);
+        if (res.rol === 'adminPTU') {
+          console.log('Yes');
+          this.setState({
+            botonAgregarBeneficio: true,
+            admin: true,
+            usuario: res
+          });
+        } else {
+          this.setState({
+            usuario: res
+          });
+        }
+      }
+    });
   }
 
   handleCrearBeneficioSubmit(event) {
@@ -68,7 +82,12 @@ class CatalogoBeneficios extends Component {
     }
 
     return beneficios.map(beneficio => (
-      <Beneficio key={beneficio._id} beneficio={beneficio} />
+      <Beneficio
+        key={beneficio._id}
+        beneficio={beneficio}
+        admin={this.state.admin}
+        usuario={this.state.usuario}
+      />
     ));
   }
 
@@ -76,7 +95,6 @@ class CatalogoBeneficios extends Component {
     if (this.state.botonAgregarBeneficio) {
       return (
         <div className="text-center">
-          <hr />
           <button
             type="button"
             className="btn btn-outline-warning"
@@ -102,7 +120,6 @@ class CatalogoBeneficios extends Component {
     if (this.state.formCrearBeneficio) {
       return (
         <div className="col-12">
-          <hr />
           <h5>Agregar un nuevo beneficio</h5>
           <form onSubmit={this.handleCrearBeneficioSubmit.bind(this)}>
             <div className="form-group">
@@ -154,7 +171,7 @@ class CatalogoBeneficios extends Component {
   render() {
     return (
       <div id="catalogoBeneficios" className="row">
-        <div className="col-12 no-gutters">
+        <div className="col-12">
           <div className="bg-uniandes text-light">
             <br />
             <h3 className="text-center font-weight-bold">
@@ -162,11 +179,10 @@ class CatalogoBeneficios extends Component {
             </h3>
             <br />
           </div>
+          <hr />
         </div>
-        <div className="col-12">
-          {this.agregarBeneficio()}
-          {this.formCrearBeneficio()}
-        </div>
+        {this.formCrearBeneficio()}
+        <div className="col-12 text-center">{this.agregarBeneficio()}</div>
 
         <div className="col-12">
           <div className="bg-uniandes text-light rounded-top">

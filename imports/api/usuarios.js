@@ -13,7 +13,7 @@ import {
 
 const jwt = require('jsonwebtoken');
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+const cryptr = new Cryptr('myTotalySecretKeyPTU');
 
 export const Usuarios = new Mongo.Collection('usuarios');
 
@@ -36,6 +36,8 @@ Meteor.methods({
         puntos: 0,
         rol: 'uniandino'
       });
+
+      return true;
     } catch (err) {
       if (err) {
         if (err.code === 11000) {
@@ -54,10 +56,7 @@ Meteor.methods({
     check(correo, String);
     check(clave, String);
 
-    console.log("Entra aca");
-
     let usuario = null;
-
 
     usuario = Usuarios.findOne({
       correo: correo
@@ -68,9 +67,25 @@ Meteor.methods({
     } else {
       if (cryptr.decrypt(usuario.clave) !== clave) {
         throw new Meteor.Error('La contraseña ingresada no es correcta.');
-      } else {
-        return usuario;
       }
     }
+
+    delete usuario.clave;
+
+    let token = jwt.sign(usuario, 'shhhhhPTU');
+
+    return token;
   },
+  'usuarios.decodificar'(token) {
+    let usuario = decodificarToken(token);
+    if (usuario) {
+      return usuario;
+    } else {
+      return null;
+    }
+  }
 });
+
+function decodificarToken(token) {
+  return token ? jwt.verify(token, 'shhhhhPTU') : null;
+}

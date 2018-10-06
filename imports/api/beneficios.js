@@ -25,7 +25,7 @@ Meteor.methods({
         let fecha = new Date;
 
         Beneficios.insert({
-            idCreador: usuario.codigo,
+            idCreador: usuario.identificacion,
             nombreCreador: usuario.nombre,
             beneficio: beneficio,
             puntosRequeridos: puntos,

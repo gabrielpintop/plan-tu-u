@@ -7,10 +7,8 @@ class Beneficio extends Component {
 
     this.state = {
       beneficio: this.props.beneficio,
-      usuario: {
-        rol: 'adminPTU',
-        puntos: 12
-      },
+      usuario: this.props.usuario,
+      admin: this.props.admin,
       actualizar: false
     };
 
@@ -130,7 +128,7 @@ class Beneficio extends Component {
     if (
       (!usuario && this.state.beneficio.puntosRequeridos > 0) ||
       (usuario &&
-        usuario.rol === 'usuario' &&
+        !this.state.admin &&
         this.state.beneficio.puntosRequeridos > usuario.puntos)
     ) {
       return (
@@ -140,7 +138,7 @@ class Beneficio extends Component {
           </button>
         </div>
       );
-    } else if (usuario && usuario.rol === 'adminPTU') {
+    } else if (usuario && this.state.admin) {
       return (
         <div className="col-md-3 col-12 font-weight-bold text-right">
           <p>
@@ -166,7 +164,7 @@ class Beneficio extends Component {
 
   mostrarDetallesAdmin() {
     let admin = [];
-    if (this.state.usuario && this.state.usuario.rol === 'adminPTU') {
+    if (this.state.usuario && this.state.admin) {
       let beneficio = this.state.beneficio;
       admin.push(
         <div className="col-12">

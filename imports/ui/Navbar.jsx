@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 
@@ -6,20 +7,34 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      idUsuario: localStorage.getItem('PTUusuario')
+      token: localStorage.getItem('PTUusuario'),
+      nombre: null
     };
+  }
+
+  componentDidMount() {
+    Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
+      if (err) {
+        alert(err.error);
+      } else if (res) {
+        this.setState({
+          nombre: res.nombre
+        });
+      }
+    });
   }
 
   cerrarSesion() {
     localStorage.removeItem('PTUusuario');
     this.setState({
-      idUsuario: null
+      token: null,
+      nombre: null
     });
     window.location.reload();
   }
 
   renderOpcionesNavbar() {
-    if (this.state.idUsuario) {
+    if (this.state.token) {
       return (
         <li className="nav-item dropdown pointer">
           <a
@@ -30,7 +45,7 @@ class Navbar extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {this.state.idUsuario}
+            {this.state.nombre}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <a

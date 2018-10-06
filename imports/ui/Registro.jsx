@@ -24,25 +24,34 @@ class Registro extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    let correo = this.correoInput.current.value;
+    let clave = this.claveInput.current.value;
+
     Meteor.call(
       'usuarios.insertar',
       {
         nombre: this.nombreInput.current.value,
         identificacion: this.identificacionInput.current.value,
-        correo: this.correoInput.current.value,
+        correo: correo,
         celular: this.celularInput.current.value,
-        clave: this.claveInput.current.value
+        clave: clave
       },
       (err, res) => {
         if (err) {
           alert(err.error);
-        } else {
-          // Encriptar la identificación y devolverla
-          localStorage.setItem(
-            'PTUusuario',
-            this.identificacionInput.current.value
+        } else if (res) {
+          Meteor.call(
+            'usuarios.validarUsuario',
+            { correo, clave },
+            (err, res) => {
+              if (err) {
+                alert(err.error);
+              } else {
+                localStorage.setItem('PTUusuario', res);
+                window.location.reload();
+              }
+            }
           );
-          window.location.reload();
         }
       }
     );
