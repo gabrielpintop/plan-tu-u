@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Registro from './Registro';
+import Login from './Login';
 
 export default class Navbar extends Component {
   render() {
@@ -53,15 +55,20 @@ export default class Navbar extends Component {
                   </a>
                 </div>
               </li> */}
+             <li key="loginModalKey" className="nav-item navbar-right">
+                <a
+                   id="botonParaIniciarSesion"
+                   className="nav-link pointer"
+                   data-toggle="modal"
+                   data-target="#loginModal"
+                >
+            Iniciar sesión
+          </a>
+        </li>
               <li className="nav-item">
-                <a className="nav-link" href="{{ url('/login') }}">
-                  Iniciar sesión
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="{{ url('/register') }}">
+                <Link to={'/registro'} style={{ textDecoration: 'none' }}>
                   Registrarse
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
