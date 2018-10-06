@@ -20,13 +20,13 @@ if (Meteor.isServer) {
 
         if (usuario) {
             if (usuario.rol === "adminPTU") {
+                return Obtenidos.find();
+            } else {
                 return Obtenidos.find({
                     $or: [{
                         idUsuario: usuario.identificacion
                     }, ],
                 });
-            } else {
-                return Obtenidos.find();
             }
         } else {
             throw new Meteor.Error("Debes haber iniciado sesión para acceder a esta funcionalidad.");
