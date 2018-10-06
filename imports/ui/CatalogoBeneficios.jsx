@@ -188,13 +188,14 @@ class CatalogoBeneficios extends Component {
           <div className="bg-gratuitos rounded-top">
             <br />
             <h4 className="text-center">
-            <img
-                  className="mw-100 img-fluid"
-                  src='gratuito.png'
-                  width="60px"
-                  alt=""
+              <img
+                className="mw-100 img-fluid"
+                src="gratuito.png"
+                width="60px"
+                alt=""
               />
-            &nbsp;Beneficios gratuitos&nbsp;</h4>
+              &nbsp;Beneficios gratuitos&nbsp;
+            </h4>
             <br />
           </div>
           <ul className="list-group">{this.renderBeneficios(-1, 1)}</ul>
@@ -206,10 +207,10 @@ class CatalogoBeneficios extends Component {
             <br />
             <h4 className="text-center">
               <img
-                  className="mw-100 img-fluid"
-                  src='bronce.png'
-                  width="60px"
-                  alt=""
+                className="mw-100 img-fluid"
+                src="bronce.png"
+                width="60px"
+                alt=""
               />
               &nbsp;Beneficios bronce (1 - 100)&nbsp;
             </h4>
@@ -221,14 +222,14 @@ class CatalogoBeneficios extends Component {
 
         <div className="col-12">
           <div className="bg-plata rounded-top">
-            <br />           
-              <h4 className="text-center">
-            <img
-                  className="mw-100 img-fluid"
-                  src='plata.png'
-                  width="60px"
-                  alt=""
-              /> 
+            <br />
+            <h4 className="text-center">
+              <img
+                className="mw-100 img-fluid"
+                src="plata.png"
+                width="60px"
+                alt=""
+              />
               &nbsp;Beneficios plata (101 - 500)&nbsp;
             </h4>
             <br />
@@ -242,12 +243,13 @@ class CatalogoBeneficios extends Component {
             <br />
             <h4 className="text-center">
               <img
-                  className="mw-100 img-fluid"
-                  src='oro.png'
-                  width="60px"
-                  alt=""
+                className="mw-100 img-fluid"
+                src="oro.png"
+                width="60px"
+                alt=""
               />
-            &nbsp;&nbsp;Beneficios oro (+500)&nbsp;</h4>
+              &nbsp;&nbsp;Beneficios oro (+500)&nbsp;
+            </h4>
             <br />
           </div>
           <ul className="list-group">{this.renderBeneficios(500, -1)}</ul>
@@ -260,6 +262,6 @@ class CatalogoBeneficios extends Component {
 
 export default withTracker(() => {
   return {
-    beneficios: Beneficios.find({}, { sort: { createdAt: -1 } }).fetch()
+    beneficios: Beneficios.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
   };
 })(CatalogoBeneficios);

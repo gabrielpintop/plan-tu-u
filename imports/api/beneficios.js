@@ -14,7 +14,6 @@ import {
 export const Beneficios = new Mongo.Collection('beneficios');
 
 Meteor.methods({
-    // Falta lo de usuario
     'beneficios.insertar'(beneficio, puntos, usuario) {
         check(beneficio, String);
         check(puntos, Number);

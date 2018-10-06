@@ -20,6 +20,22 @@ class Beneficio extends Component {
     this.puntosActualizarInput = React.createRef();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.admin) {
+      this.setState({
+        beneficio: nextProps.beneficio,
+        usuario: nextProps.usuario,
+        admin: true
+      });
+    } else {
+      this.setState({
+        beneficio: nextProps.beneficio,
+        usuario: nextProps.usuario,
+        admin: false
+      });
+    }
+  }
+
   eliminarBeneficio() {
     Meteor.call(
       'beneficios.remover',
