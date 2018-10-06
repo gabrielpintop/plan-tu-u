@@ -36,12 +36,12 @@ export default class Inicio extends Component {
             <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
               <img
                 className="mt-2 mb-2 text-center mx-auto justify-content-center align-self-center pointer"
-                src="./opcionesAdmin.png"
+                src="./redimidosLogoBlanco.png"
                 alt="Logo puntos"
                 width="180px"
               />
             </div>
-            <h5 className="mt-2 text-dark">Administrar Puntos</h5>
+            <h5 className="mt-2 text-dark">Beneficios redimidos</h5>
           </Link>
         </div>
       );
