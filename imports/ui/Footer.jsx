@@ -34,7 +34,6 @@ class Footer extends Component {
             >
               <p className="text-justify font-weight-bold text-warning">
                  Desarrollado por Gabriel Pinto & Vivian Gómez
-                 Estudiantes de ingeniería de sistemas | Uniandes 2018
               </p>
             </div>
 
