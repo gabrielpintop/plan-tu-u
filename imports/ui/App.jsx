@@ -9,6 +9,11 @@ import Login from './Login.jsx';
 import Footer from './Footer.jsx';
 
 
+const options = {
+  timeout: 5000,
+  position: 'bottom center'
+};
+
 class App extends Component {
   render() {
     return (

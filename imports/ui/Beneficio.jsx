@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-export default class Beneficio extends Component {
+class Beneficio extends Component {
   constructor(props) {
     super(props);
 
@@ -38,7 +38,7 @@ export default class Beneficio extends Component {
       puntos === this.state.beneficio.puntosRequeridos &&
       beneficio === this.state.beneficio.beneficio
     ) {
-      alert('Iguales');
+      alert('Probel');
     } else {
       let beneficioN = {
         beneficio: beneficio,
@@ -49,7 +49,14 @@ export default class Beneficio extends Component {
         'beneficios.actualizar',
         this.state.beneficio._id,
         beneficioN,
-        this.state.usuario
+        this.state.usuario,
+        (err, res) => {
+          if (err) {
+            alert(err);
+          } else {
+            // success!
+          }
+        }
       );
 
       this.toggleFormActualizarBeneficio();
@@ -216,3 +223,5 @@ export default class Beneficio extends Component {
     );
   }
 }
+
+export default Beneficio;
