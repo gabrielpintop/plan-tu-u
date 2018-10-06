@@ -13,6 +13,13 @@ import {
 
 export const Redimidos = new Mongo.Collection('redimidos');
 
+import {
+    Beneficios
+} from './beneficios.js';
+import {
+    Usuarios
+} from './usuarios.js';
+
 if (Meteor.isServer) {
 
     Meteor.publish('redimidos', function redimidosPublication(token) {
@@ -33,3 +40,52 @@ if (Meteor.isServer) {
         }
     });
 }
+
+Meteor.methods({
+    'redimidos.redimir'({
+        idBeneficio,
+        idUsuario
+    }) {
+        check(idBeneficio, String);
+        check(idUsuario, String);
+
+        const usuario = Usuarios.findOne({
+            _id: idUsuario
+        });
+
+        if (usuario) {
+
+            const beneficio = Beneficios.findOne({
+                _id: idBeneficio
+            });
+
+            if (beneficio) {
+                let puntosRestantes = usuario.puntos - beneficio.puntosRequeridos;
+                if (puntosRestantes >= 0) {
+                    Usuarios.update(idUsuario, {
+                        $set: {
+                            puntos: puntosRestantes
+                        }
+                    });
+
+                    let fecha = new Date;
+
+                    Redimidos.insert({
+                        idUsuario: usuario.identificacion,
+                        beneficio: beneficio.beneficio,
+                        estado: "Notificado",
+                        fechaRedimido: fecha.toLocaleString()
+                    });
+
+                    return true;
+                } else {
+                    throw new Meteor.Error("Los puntos disponibles son menores a los puntos requeridos.");
+                }
+            } else {
+                throw new Meteor.Error("El beneficio a redimir no está disponible en este momento.")
+            }
+        } else {
+            throw new Meteor.Error("No fue posible redimir el beneficio.")
+        }
+    }
+});
