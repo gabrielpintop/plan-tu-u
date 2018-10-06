@@ -35,7 +35,7 @@ Meteor.methods({
     } catch (err) {
       if (err) {
         if (err.code === 11000) {
-          throw new Meteor.Error("Ya existe un usuario con ese número de identificación.");
+          throw new Meteor.Error("Ya existe un usuario con ese número de identificación o correo asociado.");
         } else {
           throw new Meteor.Error("Se presentó un error al crear el usuario. Por favor intenta nuevamente");
         }
@@ -44,34 +44,31 @@ Meteor.methods({
 
   },
   'usuarios.validarUsuario'({
-    identificacion,
+    correo,
     clave
   }) {
-    check(identificacion, String);
+    check(correo, String);
     check(clave, String);
+
+    console.log("Entra aca");
 
     let usuario = null;
 
-    try {
-      Usuarios.findOne({
-        identificacion: identificacion
-      }, (err, usu) => {
-        if (err) {
-          throw new Meteor.Error('Hubo problemas con el inicio de sesión. Intenta nuevamente.');
-        } else if (!usu) {
-          throw new Meteor.Error('No existe un usuario con ese número de identificación.');
-        } else {
-          if (usuario.clave !== clave) {
-            throw new Meteor.Error('La contraseña ingresada no es correcta.');
-          } else {
-            usuario = usuario;
-          }
-        }
-      });
-    } catch (err) {
-      throw new Meteor.Error(err);
+
+    usuario = Usuarios.findOne({
+      correo: correo
+    });
+
+    if (!usuario) {
+      throw new Meteor.Error('No existe un usuario con ese correo.');
+    } else {
+      if (usuario.clave !== clave) {
+        throw new Meteor.Error('La contraseña ingresada no es correcta.');
+      } else {
+        return usuario;
+      }
     }
 
-    return usuario;
+
   },
 });
