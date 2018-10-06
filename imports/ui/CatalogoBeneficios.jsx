@@ -160,7 +160,7 @@ class CatalogoBeneficios extends Component {
         </div>
 
         <div className="col-12">
-          <div className="bg-uniandes text-light rounded-top">
+          <div className="bg-secondary text-light rounded-top">
             <br />
             <h4 className="text-center">&nbsp;Beneficios gratuitos&nbsp;</h4>
             <br />

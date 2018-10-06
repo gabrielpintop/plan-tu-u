@@ -31,8 +31,10 @@ class Footer extends Component {
               className="col-xl-5 col-lg-7 col-md-5 mt-4 col-12"
               id="desarrollado"
             >
-              <p className="text-justify font-weight-bold text-warning">Desarrollado por</p>
-                 <h6 className="text-justify text-warning">Gabriel Pinto & Vivian Gómez</h6>
+              <p className="text-justify font-weight-bold text-warning">
+                 Desarrollado por
+                 Gabriel Pinto & Vivian Gómez
+              </p>
             </div>
 
           </div>

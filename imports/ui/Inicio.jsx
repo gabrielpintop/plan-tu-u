@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 export default class Inicio extends Component {
   render() {
     return (
-      <div className="row">
+        <div>
+        <div className="container-fluid">
+            <img src="banner2.jpg" class="img-fluid" alt="banner Plan Tu U"/>
+        </div>      
+        <div className="row">
         <div className="col-md-6 col-12 text-center mt-5">
           <Link to={'/beneficios'} style={{ textDecoration: 'none' }}>
             <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
@@ -31,6 +35,7 @@ export default class Inicio extends Component {
             <h5 className="mt-2 text-dark">Puntos</h5>
           </Link>
         </div>
+       </div>
       </div>
     );
   }
