@@ -11,6 +11,8 @@ import {
     Match
 } from 'meteor/check';
 
+const jwt = require('jsonwebtoken');
+
 export const Redimidos = new Mongo.Collection('redimidos');
 
 import {
@@ -89,3 +91,7 @@ Meteor.methods({
         }
     }
 });
+
+function decodificarToken(token) {
+    return token ? jwt.verify(token, 'shhhhhPTU') : null;
+}
