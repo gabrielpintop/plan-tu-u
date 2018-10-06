@@ -20,14 +20,13 @@ Meteor.methods({
         check(puntos, Number);
         check(usuario, Object);
 
-        if (usuario.rol !== "adminPTU") {
-            throw new Meteor.Error('No se encuentra autorizado para crear un beneficio');
-        }
+        verificarPermisos(usuario.rol);
 
         let fecha = new Date;
 
         Beneficios.insert({
-            creadoPor: usuario.codigo,
+            idCreador: usuario.codigo,
+            nombreCreador: usuario.nombre,
             beneficio: beneficio,
             puntosRequeridos: puntos,
             fechaCreacion: fecha.toLocaleString()
@@ -37,10 +36,42 @@ Meteor.methods({
         check(idBeneficio, String);
         check(usuario, Object);
 
-        if (usuario.rol !== "administrador") {
-            throw new Meteor.Error('No se encuentra autorizado para crear un beneficio');
-        }
+        verificarPermisos(usuario.rol);
+
+        const beneficio = Beneficios.findOne(idBeneficio);
+
+        verificarExistenciaBeneficio(beneficio);
 
         Beneficios.remove(idBeneficio);
     },
+    'beneficios.actualizar'(idBeneficio, beneficioNuevo, usuario) {
+        check(idBeneficio, String);
+        check(beneficioNuevo, Object);
+        check(usuario, Object);
+
+        verificarPermisos(usuario.rol);
+
+        const beneficio = Beneficios.findOne(idBeneficio);
+
+        verificarExistenciaBeneficio(beneficio);
+
+        Beneficios.update(idBeneficio, {
+            $set: {
+                puntosRequeridos: beneficioNuevo.puntosRequeridos,
+                beneficio: beneficioNuevo.beneficio
+            }
+        });
+    }
 });
+
+function verificarPermisos(rol) {
+    if (rol !== "adminPTU") {
+        throw new Meteor.Error('No se encuentra autorizado para editar un beneficio');
+    }
+}
+
+function verificarExistenciaBeneficio(beneficio) {
+    if (!beneficio) {
+        throw new Meteor.Error('No se encuentra el beneficio a eliminar');
+    }
+}

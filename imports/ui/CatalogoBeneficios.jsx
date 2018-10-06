@@ -19,33 +19,22 @@ class CatalogoBeneficios extends Component {
     this.toggleFormAgregarBeneficios = this.toggleFormAgregarBeneficios.bind(
       this
     );
-
-    this.beneficiosSettings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-      varibleWidth: true,
-      dots: true
-    };
   }
 
   handleCrearBeneficioSubmit(event) {
     event.preventDefault();
 
-    // Find the text field via the React ref
     const beneficio = this.beneficioInput.current.value;
     const puntos = this.puntosInput.current.value;
 
     let usuario = {
-      codigo: 201515275,
-      rol: 'adminPTU'
+      codigo: '1032396154',
+      rol: 'adminPTU',
+      nombre: 'Alejandro Borraez'
     };
 
     Meteor.call('beneficios.insertar', beneficio, Number(puntos), usuario);
 
-    // Clear form
     this.beneficioInput.current.value = '';
     this.puntosInput.current.value = '';
     this.toggleFormAgregarBeneficios();
@@ -139,6 +128,7 @@ class CatalogoBeneficios extends Component {
               &nbsp;Crear beneficio
             </button>
             <button
+              type="button"
               className="btn btn-danger ml-1"
               onClick={this.toggleFormAgregarBeneficios}
             >
