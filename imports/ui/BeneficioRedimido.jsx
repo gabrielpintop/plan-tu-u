@@ -22,7 +22,7 @@ class Redimido extends Component {
       <li className="list-group-item">
         <div className="row">
           <div className="col-md-9 col-12">
-            <p>{this.state.beneficio.beneficio}</p>
+            <p>{this.state.redimido.beneficio}</p>
           </div>
         </div>
       </li>
