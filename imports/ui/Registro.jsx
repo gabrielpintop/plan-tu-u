@@ -6,6 +6,10 @@ class Registro extends Component {
   constructor(props) {
     super(props);
 
+    if (localStorage.getItem('PTUusuario')) {
+      this.props.history.push('/');
+    }
+
     this.nombreInput = React.createRef();
 
     this.identificacionInput = React.createRef();
@@ -34,8 +38,11 @@ class Registro extends Component {
           alert(err.error);
         } else {
           // Encriptar la identificación y devolverla
-          localStorage.setItem('PTUusuario', this.identificacionInput);
-          this.props.history.push('/');
+          localStorage.setItem(
+            'PTUusuario',
+            this.identificacionInput.current.value
+          );
+          window.location.reload();
         }
       }
     );
@@ -78,23 +85,6 @@ class Registro extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="registroInputCorreo">
-                <b>
-                  Correo electrónico (preferiblemente el correo institucional)
-                </b>
-              </label>
-              <input
-                type="mail"
-                className="form-control"
-                id="registroInputCorreo"
-                defaultValue="@uniandes.edu.co"
-                ref={this.correoInput}
-                minLength="4"
-                maxLength="35"
-                required
-              />
-            </div>
-            <div className="form-group">
               <label htmlFor="registroInputCelular">
                 <b>Celular</b>
               </label>
@@ -122,9 +112,27 @@ class Registro extends Component {
                 id="registroInputIdentificacion"
                 ref={this.identificacionInput}
                 min="0"
+                name="username"
                 minLength="5"
                 maxLength="15"
                 pattern="\d+"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="registroInputCorreo">
+                <b>
+                  Correo electrónico (preferiblemente el correo institucional)
+                </b>
+              </label>
+              <input
+                type="mail"
+                className="form-control"
+                id="registroInputCorreo"
+                defaultValue="@uniandes.edu.co"
+                ref={this.correoInput}
+                minLength="4"
+                maxLength="35"
                 required
               />
             </div>

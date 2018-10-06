@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Meteor } from 'meteor/meteor';
 
 class Login extends Component {
   constructor(props) {
@@ -11,61 +11,30 @@ class Login extends Component {
       error: []
     };
 
-    this.verificar = props.verificar;
+    this.correoInput = React.createRef();
 
-    this.handleChangeIdentificacion = this.handleChangeIdentificacion.bind(this);
-
-    this.handleChangeClave = this.handleChangeClave.bind(this);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.claveInput = React.createRef();
   }
 
   handleSubmit(event) {
-    let errores = [];
-    if (
-      this.state.identificacion.length < 5 ||
-      this.state.identificacion.length > 15
-    ) {
-      errores.push(
-        <p>
-          &bull;&nbsp;El nombre de usuario debe tener entre 3 y 15 carateres.
-        </p>
-      );
-    }
-
-    if (this.state.clave.length < 8 || this.state.clave.length > 35) {
-      errores.push(
-        <p>&bull;&nbsp;La contraseña debe tener entre 8 y 35 carateres.</p>
-      );
-    }
-
-    if (errores.length === 0) {
-          Meteor.call('usuarios.validarUsuario', Number(identificacion), clave);
-    } else {
-      this.setState({
-        error: errores
-      });
-    }
-
     event.preventDefault();
-  }
 
-  mostrarError() {
-    if (this.state.error.length > 0) {
-      return (
-        <div className="alert alert-danger letra-pequenia" role="alert">
-          {this.state.error}
-        </div>
-      );
-    }
-  }
-
-  handleChangeIdentificacion(event) {
-    this.setState({ identificacion: event.target.value });
-  }
-
-  handleChangeClave(event) {
-    this.setState({ clave: event.target.value });
+    Meteor.call(
+      'usuarios.validarUsuario',
+      {
+        correo: this.correoInput.current.value,
+        clave: this.claveInput.current.value
+      },
+      (err, res) => {
+        if (err) {
+          alert(err.error);
+        } else {
+          // Encriptar la identificación y devolverla
+          localStorage.setItem('PTUusuario', res.identificacion);
+          window.location.reload();
+        }
+      }
+    );
   }
 
   render() {
@@ -85,7 +54,7 @@ class Login extends Component {
           <div className="modal-content">
             <div className="modal-header bg-dark text-light">
               <h5 className="modal-title" id="exampleModalLabel">
-                Bienvenido a Plan tú U!
+                ¡Bienvenido de vuelta!
               </h5>
               <button
                 type="button"
@@ -100,37 +69,39 @@ class Login extends Component {
               </button>
             </div>
             <div className="modal-body">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="form-group">
-                  <label htmlFor="nombreDeUsuarioInput">
-                    <b>Identificación</b>
+                  <label htmlFor="registroInputCorreo">
+                    <b>Correo electrónico</b>
                   </label>
                   <input
-                    type="number"
+                    type="mail"
                     className="form-control"
-                    id="nombreDeUsuarioInput"
-                    value={this.state.value}
-                    onChange={this.handleChangeIdentificacion}
+                    id="registroInputCorreo"
+                    defaultValue="@uniandes.edu.co"
+                    ref={this.correoInput}
+                    minLength="4"
+                    maxLength="35"
                     required
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="loginInputPassword">
+                  <label htmlFor="registroInputClave">
                     <b>Contraseña</b>
                   </label>
                   <input
                     type="password"
                     className="form-control"
-                    id="loginInputPassword1"
-                    value={this.state.value}
-                    onChange={this.handleChangeClave}
-                    autoComplete="password"
+                    id="registroInputClave"
+                    ref={this.claveInput}
+                    minLength="8"
+                    maxLength="35"
+                    autoComplete="foo"
                     required
                   />
                 </div>
-                {this.mostrarError()}
                 <center>
-                  <button type="submit" className="btn btn-warning mr-1">
+                  <button type="submit" className="btn btn-uniandes">
                     Iniciar sesión
                   </button>
                 </center>
