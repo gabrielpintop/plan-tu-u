@@ -3,7 +3,7 @@ import CatalogoBeneficios from './CatalogoBeneficios.jsx';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Inicio from './Inicio.jsx';
-import Puntos from './Puntos.jsx';
+import UsuarioDetail from './UsuarioDetail.jsx';
 import Registro from './Registro.jsx';
 import Login from './Login.jsx';
 import Footer from './Footer.jsx';
@@ -22,7 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
-            <Route exact path="/puntos" component={Puntos} />
+            <Route exact path="/puntos" component={UsuarioDetail} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/login" component={Login} />
             <Redirect from="*" to="/" />
