@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import BeneficioRedimido from './BeneficioRedimido.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Redimidos } from '../api/redimidos.js';
+import { Obtenidos } from '../api/obtenidos.js';
 
-class BeneficiosRedimidos extends Component {
+class PObtenidos extends Component {
   constructor(props) {
     super(props);
 
@@ -38,34 +37,32 @@ class BeneficiosRedimidos extends Component {
   }
 
   
-  renderRedimidos() {
-    let Redimidos = this.props.redimidos;
+  renderObtenidos() {
+    let Obtenidos = this.props.obtenidos;
 
-    return Redimidos.map(redimido => (
-      <BeneficioRedimido
-        key={redimido._id}
-        redimido={redimido}
-        fechaRedimido= {redimido.fechaRedimido}
-        puntosRequeridos= {redimido.beneficio.puntosRequeridos}
+    return Obtenidos.map(obtenido => (
+      <Obtenido
+        key={obtenido._id}
+        obtenido={obtenido}
       />
     ));
   }
 
   render() {
     return (
-      <div id="catalogoRedimidos" className="row">
+      <div id="catalogoObtenidos" className="row">
         <div className="col-12">
           <div>
             <br />
             <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Beneficios Redimidos &nbsp;
+              &nbsp;Has obtenido beneficios por: &nbsp;
             </h3>
             <br />
           </div>
           <hr />
         </div>
         <div className="col-12">
-          <ul className="list-group">{this.renderRedimidos()}</ul>
+          <ul className="list-group">{this.renderObtenidos()}</ul>
           <hr />
         </div>
       </div>
@@ -74,8 +71,8 @@ class BeneficiosRedimidos extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('redimidos', localStorage.getItem('PTUusuario'));
+  Meteor.subscribe('Obtenidos', localStorage.getItem('PTUusuario'));
   return {
-    redimidos: Redimidos.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
+    obtenidos: Obtenidos.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
   };
-})(BeneficiosRedimidos);
+})(PObtenidos);
