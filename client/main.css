@@ -165,9 +165,17 @@ html {
 }
 
 #mainContainer {
-  min-height: 500px;
+  min-height: 600px;
 }
 
 .PTU-footer {
   background-color: #000000;
+}
+
+.mw-180 {
+  max-width: 180px;
+}
+
+.copyright-opacity {
+  opacity: 0.5;
 }
