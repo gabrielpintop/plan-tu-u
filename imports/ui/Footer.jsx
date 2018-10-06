@@ -24,12 +24,7 @@ class Footer extends Component {
 
             <div className="col-lg-5 col-md-12 mt-4 col-12" id="desarrollado">
               <p className="text-justify font-weight-bold text-warning">
-<<<<<<< HEAD
                  Desarrollado por Gabriel Pinto & Vivian Gómez
-=======
-                Desarrollado por Gabriel Pinto & Vivian Gómez Estudiantes de
-                ingeniería de sistemas | Uniandes 2018
->>>>>>> 4770fe52328077a0a36030151b84a9bb02e60b94
               </p>
             </div>
             <div className="col-12 text-center copyright-opacity">
