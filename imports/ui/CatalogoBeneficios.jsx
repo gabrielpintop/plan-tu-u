@@ -11,14 +11,38 @@ class CatalogoBeneficios extends Component {
     this.puntosInput = React.createRef();
 
     this.state = {
-      botonAgregarBeneficio: true,
+      botonAgregarBeneficio: false,
       formCrearBeneficio: false,
-      beneficiosGratuitos: []
+      token: localStorage.getItem('PTUusuario'),
+      admin: false,
+      usuario: null
     };
 
     this.toggleFormAgregarBeneficios = this.toggleFormAgregarBeneficios.bind(
       this
     );
+  }
+
+  componentDidMount() {
+    Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
+      if (err) {
+        alert(err.error);
+      } else if (res) {
+        console.log(res);
+        if (res.rol === 'adminPTU') {
+          console.log('Yes');
+          this.setState({
+            botonAgregarBeneficio: true,
+            admin: true,
+            usuario: res
+          });
+        } else {
+          this.setState({
+            usuario: res
+          });
+        }
+      }
+    });
   }
 
   handleCrearBeneficioSubmit(event) {
@@ -27,13 +51,12 @@ class CatalogoBeneficios extends Component {
     const beneficio = this.beneficioInput.current.value;
     const puntos = this.puntosInput.current.value;
 
-    let usuario = {
-      codigo: '1032396154',
-      rol: 'adminPTU',
-      nombre: 'Alejandro Borraez'
-    };
-
-    Meteor.call('beneficios.insertar', beneficio, Number(puntos), usuario);
+    Meteor.call(
+      'beneficios.insertar',
+      beneficio,
+      Number(puntos),
+      this.state.usuario
+    );
 
     this.beneficioInput.current.value = '';
     this.puntosInput.current.value = '';
@@ -59,7 +82,12 @@ class CatalogoBeneficios extends Component {
     }
 
     return beneficios.map(beneficio => (
-      <Beneficio key={beneficio._id} beneficio={beneficio} />
+      <Beneficio
+        key={beneficio._id}
+        beneficio={beneficio}
+        admin={this.state.admin}
+        usuario={this.state.usuario}
+      />
     ));
   }
 
@@ -67,7 +95,6 @@ class CatalogoBeneficios extends Component {
     if (this.state.botonAgregarBeneficio) {
       return (
         <div className="text-center">
-          <hr />
           <button
             type="button"
             className="btn btn-outline-warning"
@@ -93,7 +120,6 @@ class CatalogoBeneficios extends Component {
     if (this.state.formCrearBeneficio) {
       return (
         <div className="col-12">
-          <hr />
           <h5>Agregar un nuevo beneficio</h5>
           <form onSubmit={this.handleCrearBeneficioSubmit.bind(this)}>
             <div className="form-group">
@@ -144,8 +170,8 @@ class CatalogoBeneficios extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-12 no-gutters">
+      <div id="catalogoBeneficios" className="row">
+        <div className="col-12">
           <div className="bg-uniandes text-light">
             <br />
             <h3 className="text-center font-weight-bold">
@@ -153,16 +179,22 @@ class CatalogoBeneficios extends Component {
             </h3>
             <br />
           </div>
+          <hr />
         </div>
-        <div className="col-12">
-          {this.agregarBeneficio()}
-          {this.formCrearBeneficio()}
-        </div>
+        {this.formCrearBeneficio()}
+        <div className="col-12 text-center">{this.agregarBeneficio()}</div>
 
         <div className="col-12">
-          <div className="bg-secondary text-light rounded-top">
+          <div className="bg-gratuitos rounded-top">
             <br />
-            <h4 className="text-center">&nbsp;Beneficios gratuitos&nbsp;</h4>
+            <h4 className="text-center">
+            <img
+                  className="mw-100 img-fluid"
+                  src='gratuito.png'
+                  width="60px"
+                  alt=""
+              />
+            &nbsp;Beneficios gratuitos&nbsp;</h4>
             <br />
           </div>
           <ul className="list-group">{this.renderBeneficios(-1, 1)}</ul>
@@ -170,9 +202,15 @@ class CatalogoBeneficios extends Component {
         </div>
 
         <div className="col-12">
-          <div className="bg-bronce text-light rounded-top">
+          <div className="bg-bronce rounded-top">
             <br />
             <h4 className="text-center">
+              <img
+                  className="mw-100 img-fluid"
+                  src='bronce.png'
+                  width="60px"
+                  alt=""
+              />
               &nbsp;Beneficios bronce (1 - 100)&nbsp;
             </h4>
             <br />
@@ -182,9 +220,15 @@ class CatalogoBeneficios extends Component {
         </div>
 
         <div className="col-12">
-          <div className="bg-plata text-light rounded-top">
-            <br />
-            <h4 className="text-center">
+          <div className="bg-plata rounded-top">
+            <br />           
+              <h4 className="text-center">
+            <img
+                  className="mw-100 img-fluid"
+                  src='plata.png'
+                  width="60px"
+                  alt=""
+              /> 
               &nbsp;Beneficios plata (101 - 500)&nbsp;
             </h4>
             <br />
@@ -194,9 +238,16 @@ class CatalogoBeneficios extends Component {
         </div>
 
         <div className="col-12">
-          <div className="bg-oro text-light rounded-top">
+          <div className="bg-oro rounded-top">
             <br />
-            <h4 className="text-center">&nbsp;Beneficios oro (+500)&nbsp;</h4>
+            <h4 className="text-center">
+              <img
+                  className="mw-100 img-fluid"
+                  src='oro.png'
+                  width="60px"
+                  alt=""
+              />
+            &nbsp;&nbsp;Beneficios oro (+500)&nbsp;</h4>
             <br />
           </div>
           <ul className="list-group">{this.renderBeneficios(500, -1)}</ul>

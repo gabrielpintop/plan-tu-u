@@ -129,19 +129,27 @@ html {
 }
 
 .bg-gratuitos {
-  background-color: #ffcf40;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #fef587;
 }
 
 .bg-bronce {
-  background-color: #cd7f32;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #cd7f32;
 }
 
 .bg-plata {
-  background-color: #b0b8b9;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #b0b8b9;
 }
 
 .bg-oro {
-  background-color: #ffbf00;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #ffbf00;
 }
 
 .slick-prev:before {
@@ -154,4 +162,12 @@ html {
 
 #header {
   background: black url(banner2.jpg) center no-repeat;
+}
+
+#mainContainer {
+  min-height: 500px;
+}
+
+.PTU-footer {
+  background-color: #000000;
 }

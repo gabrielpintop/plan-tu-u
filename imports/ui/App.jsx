@@ -8,13 +8,17 @@ import Registro from './Registro.jsx';
 import Login from './Login.jsx';
 import Footer from './Footer.jsx';
 
+const options = {
+  timeout: 5000,
+  position: 'bottom center'
+};
 
 class App extends Component {
   render() {
     return (
       <div>
         <Navbar />
-        <div className="container container-fluid mt-3">
+        <div id="mainContainer" className="container container-fluid mt-3">
           <Switch>
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
@@ -24,8 +28,8 @@ class App extends Component {
             <Redirect from="*" to="/" />
           </Switch>
         </div>
-        <br/>
-        <Footer/>
+        <br />
+        <Footer />
       </div>
     );
   }
