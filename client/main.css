@@ -90,6 +90,44 @@ html {
   border-color: #ffc107;
 }
 
+.btn-uniandes {
+  color: white;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-uniandes:hover {
+  color: white;
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-uniandes:focus,
+.btn-uniandes.focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
+.btn-uniandes.disabled,
+.btn-uniandes:disabled {
+  color: white;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-uniandes:not(:disabled):not(.disabled):active,
+.btn-uniandes:not(:disabled):not(.disabled).active,
+.show>.btn-uniandes.dropdown-toggle {
+  color: white;
+  background-color: #d39e00;
+  border-color: #c69500;
+}
+
+.btn-uniandes:not(:disabled):not(.disabled):active:focus,
+.btn-uniandes:not(:disabled):not(.disabled).active:focus,
+.show>.btn-uniandes.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+}
+
 .bg-gratuitos {
   background-color: #ffcf40;
 }

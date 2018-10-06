@@ -12,46 +12,66 @@ import {
 } from 'meteor/check';
 
 export const Usuarios = new Mongo.Collection('usuarios');
-//Usuarios.createIndex({ identificacion: -1 });
 
 Meteor.methods({
-  'usuarios.insertar'(nombre, identificacion, correo, celular, clave) {
+  'usuarios.insertar'({
+    nombre,
+    identificacion,
+    correo,
+    celular,
+    clave
+  }) {
 
-    Usuarios.insert({
-      nombre: nombre,
-      identificacion: identificacion,
-      correo:correo,
-      celular:celular,
-      clave: clave,
-      puntos:0,
-      rol: 'uniandino'
-    }, (err, res) => {
+    try {
+      Usuarios.insert({
+        nombre: nombre,
+        identificacion: identificacion,
+        correo: correo,
+        celular: celular,
+        clave: clave,
+        puntos: 0,
+        rol: 'uniandino'
+      });
+    } catch (err) {
       if (err) {
-       alert(err);
-     } else {
-       alert("Se creó el usuario "+nombre+" correctamente");
-     }
-   });
+        if (err.code === 11000) {
+          throw new Meteor.Error("Ya existe un usuario con ese número de identificación.");
+        } else {
+          throw new Meteor.Error("Se presentó un error al crear el usuario. Por favor intenta nuevamente");
+        }
+      }
+    }
+
   },
-    'usuarios.validarUsuario'(ident, clave) {
+  'usuarios.validarUsuario'({
+    identificacion,
+    clave
+  }) {
     check(identificacion, String);
     check(clave, String);
 
-    Usuarios.findOne({
-                identificacion: ident
-            }, (err, usuario) => {
-                if (err) {
-                      alert(err);
-                } else if (!usuario) {
-                      alert('El nombre de usuario ingresado no existe');
-                } else {       
-                    if (!(usuario.clave===clave)) {
-                        
-                        alert('La contraseña ingresada es incorrecta.');
-                    } else {                
-                        alert( '¡Bienvenido ' + body.nombreDeUsuario + '!' );
-                    }
-                }
-            });
-     },
+    let usuario = null;
+
+    try {
+      Usuarios.findOne({
+        identificacion: identificacion
+      }, (err, usu) => {
+        if (err) {
+          throw new Meteor.Error('Hubo problemas con el inicio de sesión. Intenta nuevamente.');
+        } else if (!usu) {
+          throw new Meteor.Error('No existe un usuario con ese número de identificación.');
+        } else {
+          if (usuario.clave !== clave) {
+            throw new Meteor.Error('La contraseña ingresada no es correcta.');
+          } else {
+            usuario = usuario;
+          }
+        }
+      });
+    } catch (err) {
+      throw new Meteor.Error(err);
+    }
+
+    return usuario;
+  },
 });
