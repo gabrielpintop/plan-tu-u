@@ -1,28 +1,58 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 
 export default class Inicio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      admin: false
+      verPuntosUsuario:false,
+      token: localStorage.getItem('PTUusuario'),
+      admin: false,
+      usuario: null
     };
   }
 
+
   componentDidMount() {
-    Meteor.call(
-      'usuarios.decodificar',
-      localStorage.getItem('PTUusuario'),
-      (err, res) => {
-        if (err) {
-          alert(err.error);
-        } else if (res && res.rol === 'adminPTU') {
+    Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
+      if (err) {
+        alert(err.error);
+      } else if (res) {
+        console.log(res);
+        if (res.rol === 'adminPTU') {
+          console.log('Yes');
           this.setState({
-            admin: true
+            botonAgregarBeneficio: true,
+            admin: true,
+            usuario: res
+          });
+        } else {
+          console.log("UNIANDINO ", res);
+          this.setState({
+            token: localStorage.getItem('PTUusuario'),
+            usuario: res
+
           });
         }
       }
-    );
+    });
+  }
+
+
+  verPuntosUsuario() {
+    if (this.state.usuario) {
+      console.log("Entra!");
+      this.setState({
+        verPuntosUsuario: !this.state.verPuntosUsuario,
+      });
+       document.getElementById('verPuntosUs').click()
+    } else {
+      alert("Por favor inicia sesión");
+      document.getElementById('botonParaIniciarSesion').click();
+      document.getElementById('verPuntosUs').click()
+    }
   }
 
   mostrarOpciones() {
@@ -45,17 +75,17 @@ export default class Inicio extends Component {
     } else {
       return (
         <div className="col-md-6 col-12 text-center mt-5">
-          <Link to={'/puntos'} style={{ textDecoration: 'none' }}>
             <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
               <img
                 className="mt-2 mb-2 text-center mx-auto justify-content-center align-self-center pointer"
                 src="./puntosBlanco.png"
                 alt="Logo puntos"
                 width="180px"
+                onClick={() => this.verPuntosUsuario()}
               />
             </div>
             <h5 className="mt-2 text-dark">Puntos</h5>
-          </Link>
+          
         </div>
       );
     }
