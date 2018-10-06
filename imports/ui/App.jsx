@@ -4,6 +4,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Inicio from './Inicio.jsx';
 import Puntos from './Puntos.jsx';
+import Registro from './Registro.jsx';
+import Login from './Login.jsx';
+
 
 class App extends Component {
   render() {
@@ -15,6 +18,8 @@ class App extends Component {
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
             <Route exact path="/puntos" component={Puntos} />
+            <Route exact path="/registro" component={Registro} />
+            <Route exact path="/login" component={Login} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
