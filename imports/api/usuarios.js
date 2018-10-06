@@ -49,6 +49,18 @@ Meteor.methods({
     }
 
   },
+  'usuarios.buscarUsuario'({
+    correo,
+  }) {
+
+    let usuario = null;
+
+    usuario = Usuarios.findOne({
+      correo: correo
+    });
+
+    return usuario;
+  },
   'usuarios.validarUsuario'({
     correo,
     clave

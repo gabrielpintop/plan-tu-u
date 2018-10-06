@@ -2,7 +2,7 @@
   "name": "plan-tu-u",
   "author": "Gabriel Pinto & Vivian Gómez",
   "license": "MIT",
-  "description": "",
+  "description": "Esta aplicación busca fidelizar a los egresados uniandinos mediante un sistema de puntos a partir de los cuales ellos obtienen beneficios. La aplicación permite que puedan ver los beneficios que pueden obtener y que administren sus puntos",
   "private": true,
   "scripts": {
     "start": "meteor run",

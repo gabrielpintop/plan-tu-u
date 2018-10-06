@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
+import UsuarioDetail from './UsuarioDetail.jsx';
+
 
 class Navbar extends Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class Navbar extends Component {
   }
 
   renderOpcionesNavbar() {
+    const lista = [];
     if (this.state.token) {
       return (
         <li className="nav-item dropdown pointer">
@@ -54,11 +57,18 @@ class Navbar extends Component {
             >
               Cerrar sesión
             </a>
+            <a
+              id="verPuntosUs"
+              className="nav-link pointer"
+              onClick={() => this.props.history.push('/puntos')}
+            >
+              Mis puntos
+            </a>
           </div>
-        </li>
+         </li>
       );
     } else {
-      const lista = [];
+      
       lista.push(
         <li key="loginModalKey" className="nav-item navbar-right">
           <a
