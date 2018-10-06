@@ -155,3 +155,7 @@ html {
 #header {
   background: black url(banner2.jpg) center no-repeat;
 }
+
+#mainContainer {
+  min-height: 800px;
+}

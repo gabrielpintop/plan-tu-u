@@ -11,6 +11,10 @@ import {
   Match
 } from 'meteor/check';
 
+const jwt = require('jsonwebtoken');
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
+
 export const Usuarios = new Mongo.Collection('usuarios');
 
 Meteor.methods({
@@ -28,7 +32,7 @@ Meteor.methods({
         identificacion: identificacion,
         correo: correo,
         celular: celular,
-        clave: clave,
+        clave: cryptr.encrypt(clave),
         puntos: 0,
         rol: 'uniandino'
       });
@@ -62,13 +66,11 @@ Meteor.methods({
     if (!usuario) {
       throw new Meteor.Error('No existe un usuario con ese correo.');
     } else {
-      if (usuario.clave !== clave) {
+      if (cryptr.decrypt(usuario.clave) !== clave) {
         throw new Meteor.Error('La contraseña ingresada no es correcta.');
       } else {
         return usuario;
       }
     }
-
-
   },
 });

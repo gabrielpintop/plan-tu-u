@@ -11,14 +11,24 @@ class CatalogoBeneficios extends Component {
     this.puntosInput = React.createRef();
 
     this.state = {
-      botonAgregarBeneficio: true,
+      botonAgregarBeneficio: false,
       formCrearBeneficio: false,
-      beneficiosGratuitos: []
+      usuario: localStorage.getItem('PTUusuario')
     };
+
+    this.verificarPermisos();
 
     this.toggleFormAgregarBeneficios = this.toggleFormAgregarBeneficios.bind(
       this
     );
+  }
+
+  verificarPermisos() {
+    if (this.state.usuario && this.state.usuario.rol === 'adminPTU') {
+      this.setState({
+        botonAgregarBeneficio: true
+      });
+    }
   }
 
   handleCrearBeneficioSubmit(event) {
@@ -27,13 +37,12 @@ class CatalogoBeneficios extends Component {
     const beneficio = this.beneficioInput.current.value;
     const puntos = this.puntosInput.current.value;
 
-    let usuario = {
-      codigo: '1032396154',
-      rol: 'adminPTU',
-      nombre: 'Alejandro Borraez'
-    };
-
-    Meteor.call('beneficios.insertar', beneficio, Number(puntos), usuario);
+    Meteor.call(
+      'beneficios.insertar',
+      beneficio,
+      Number(puntos),
+      this.state.usuario
+    );
 
     this.beneficioInput.current.value = '';
     this.puntosInput.current.value = '';
@@ -144,7 +153,7 @@ class CatalogoBeneficios extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div id="catalogoBeneficios" className="row">
         <div className="col-12 no-gutters">
           <div className="bg-uniandes text-light">
             <br />
