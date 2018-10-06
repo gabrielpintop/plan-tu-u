@@ -19,7 +19,6 @@ if (Meteor.isServer) {
     });
 }
 
-
 Meteor.methods({
     'beneficios.insertar'(beneficio, puntos, usuario) {
         check(beneficio, String);
