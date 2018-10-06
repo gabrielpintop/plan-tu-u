@@ -7,6 +7,7 @@ import UsuarioDetail from './UsuarioDetail.jsx';
 import Registro from './Registro.jsx';
 import Login from './Login.jsx';
 import Footer from './Footer.jsx';
+import Dashboard from './Dashboard.jsx';
 
 const options = {
   timeout: 5000,
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
             <Route exact path="/puntos" component={UsuarioDetail} />
+            <Route exact path="/dashboardAdministrador" component={Dashboard} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/login" component={Login} />
             <Redirect from="*" to="/" />

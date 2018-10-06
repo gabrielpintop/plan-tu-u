@@ -91,7 +91,16 @@ Meteor.methods({
   'usuarios.decodificar'(token) {
     let usuario = decodificarToken(token);
     if (usuario) {
-      return usuario;
+      let nUsuario = Usuarios.findOne({
+        _id: usuario._id
+      });
+
+      if (nUsuario) {
+        delete nUsuario.clave;
+        return nUsuario;
+      } else {
+        return null
+      }
     } else {
       return null;
     }

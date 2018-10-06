@@ -75,6 +75,7 @@ function verificarPermisos(rol) {
     }
 }
 
+
 function verificarExistenciaBeneficio(beneficio) {
     if (!beneficio) {
         throw new Meteor.Error('No se encuentra el beneficio a eliminar');

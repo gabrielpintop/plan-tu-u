@@ -59,7 +59,10 @@ export default class Inicio extends Component {
     if (this.state.admin) {
       return (
         <div className="col-md-6 col-12 text-center mt-5">
-          <Link to={'/puntos'} style={{ textDecoration: 'none' }}>
+          <Link
+            to={'/dashboardAdministrador'}
+            style={{ textDecoration: 'none' }}
+          >
             <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
               <img
                 className="mt-2 mb-2 text-center mx-auto justify-content-center align-self-center pointer"

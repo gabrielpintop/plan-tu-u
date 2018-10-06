@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import Beneficio from './Beneficio.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Beneficios } from '../api/beneficios.js';
+import { Usuarios } from '../api/usuarios';
 
 class CatalogoBeneficios extends Component {
   constructor(props) {
@@ -28,9 +29,7 @@ class CatalogoBeneficios extends Component {
       if (err) {
         alert(err.error);
       } else if (res) {
-        console.log(res);
         if (res.rol === 'adminPTU') {
-          console.log('Yes');
           this.setState({
             botonAgregarBeneficio: true,
             admin: true,

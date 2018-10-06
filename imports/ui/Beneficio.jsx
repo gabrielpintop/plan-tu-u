@@ -164,17 +164,53 @@ class Beneficio extends Component {
       );
     } else if (
       usuario &&
-      usuario.rol === 'usuario' &&
+      usuario.rol === 'uniandino' &&
       this.state.beneficio.puntosRequeridos > 0 &&
       this.state.beneficio.puntosRequeridos <= usuario.puntos
     ) {
       return (
         <div className="col-md-3 col-12 font-weight-bold text-right">
-          <button type="button" className="btn btn-outline-warning">
+          <button
+            type="button"
+            className="btn btn-uniandes"
+            onClick={() => this.redimirBeneficio()}
+          >
             Redimir - <b>{this.state.beneficio.puntosRequeridos}</b> puntos
           </button>
         </div>
       );
+    }
+  }
+
+  redimirBeneficio() {
+    if (this.state.admin) {
+      alert('Un administrador no puede redimir beneficios');
+    } else if (!this.state.usuario) {
+      alert('Debes iniciar sesión para redimir el beneficio');
+    } else {
+      const acepto = confirm(
+        'Se restarán ' +
+          this.state.beneficio.puntosRequeridos +
+          ' puntos de tu cuenta. ¿Deseas continuar con la transacción?'
+      );
+
+      if (acepto) {
+        Meteor.call(
+          'redimidos.redimir',
+          {
+            idBeneficio: this.state.beneficio._id,
+            idUsuario: this.state.usuario._id
+          },
+          (err, res) => {
+            if (err) {
+              alert(err.error);
+            } else if (res) {
+              alert('El beneficio fue redimido de forma exitosa.');
+              window.location.reload();
+            }
+          }
+        );
+      }
     }
   }
 
