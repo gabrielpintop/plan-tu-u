@@ -5,6 +5,11 @@ import Navbar from './Navbar.jsx';
 import Inicio from './Inicio.jsx';
 import Puntos from './Puntos.jsx';
 
+const options = {
+  timeout: 5000,
+  position: 'bottom center'
+};
+
 class App extends Component {
   render() {
     return (
