@@ -11,25 +11,30 @@ import {
     Match
 } from 'meteor/check';
 
+const jwt = require('jsonwebtoken');
+
 export const Asignaciones = new Mongo.Collection('asignaciones');
 
 if (Meteor.isServer) {
 
-    Meteor.publish('asignaciones', function asignacionesPublication(token) {
-        let usuario = decodificarToken(token);
+    Meteor.publish('asignaciones', function asignacionesPublication() {
+        return Asignaciones.find();
+    });
 
+    Meteor.publish('asignaciones.usuario', function (token) {
+        let usuario = decodificarToken(token);
         if (usuario) {
-            if (usuario.rol === "adminPTU") {
-                return Asignaciones.find();
-            } else {
-                return Asignaciones.find({
-                    $or: [{
-                        idUsuario: usuario.identificacion
-                    }, ]
-                });
-            }
+            return Asignaciones.find({
+                $or: [{
+                    idUsuario: usuario.identificacion
+                }, ]
+            });
         } else {
             throw new Meteor.Error("Debes haber iniciado sesión para acceder a esta funcionalidad.");
         }
-    });
+    })
+}
+
+function decodificarToken(token) {
+    return token ? jwt.verify(token, 'shhhhhPTU') : null;
 }
