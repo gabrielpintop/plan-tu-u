@@ -6,7 +6,7 @@ import Login from './Login';
 export default class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-light bg-light py-md-2">
+        <nav class="navbar navbar-expand-md navbar-light bg-light py-md-2">
         <div className="container">
           <Link to={'/'} style={{ textDecoration: 'none' }}>
             <div className="navbar-brand">
@@ -56,6 +56,7 @@ export default class Navbar extends Component {
                 </div>
               </li> */}
              <li key="loginModalKey" className="nav-item navbar-right">
+                <i class="far fa-sign-in"></i>
                 <a
                    id="botonParaIniciarSesion"
                    className="nav-link pointer"
@@ -66,6 +67,7 @@ export default class Navbar extends Component {
           </a>
         </li>
               <li className="nav-item">
+                <span className="glyphicon glyphicon-log-in"></span>
                 <Link to={'/registro'} style={{ textDecoration: 'none' }}>
                   Registrarse
                 </Link>

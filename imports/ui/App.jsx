@@ -6,6 +6,7 @@ import Inicio from './Inicio.jsx';
 import Puntos from './Puntos.jsx';
 import Registro from './Registro.jsx';
 import Login from './Login.jsx';
+import Footer from './Footer.jsx';
 
 
 class App extends Component {
@@ -23,6 +24,8 @@ class App extends Component {
             <Redirect from="*" to="/" />
           </Switch>
         </div>
+        <br/>
+        <Footer/>
       </div>
     );
   }
