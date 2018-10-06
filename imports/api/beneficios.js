@@ -13,6 +13,13 @@ import {
 
 export const Beneficios = new Mongo.Collection('beneficios');
 
+if (Meteor.isServer) {
+    Meteor.publish('beneficios', function beneficiosPublication() {
+        return Beneficios.find();
+    });
+}
+
+
 Meteor.methods({
     'beneficios.insertar'(beneficio, puntos, usuario) {
         check(beneficio, String);

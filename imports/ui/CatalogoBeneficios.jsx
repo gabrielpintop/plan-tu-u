@@ -261,6 +261,7 @@ class CatalogoBeneficios extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('beneficios');
   return {
     beneficios: Beneficios.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
   };
