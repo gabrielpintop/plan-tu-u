@@ -4,7 +4,6 @@ import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import UsuarioDetail from './UsuarioDetail.jsx';
 
-
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -52,23 +51,22 @@ class Navbar extends Component {
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <a
+              id="verPuntosUs"
+              className="dropdown-item pointer"
+              onClick={() => this.props.history.push('/puntos')}
+            >
+              Mis puntos
+            </a>
+            <a
               className="dropdown-item pointer"
               onClick={() => this.cerrarSesion()}
             >
               Cerrar sesión
             </a>
-            <a
-              id="verPuntosUs"
-              className="nav-link pointer"
-              onClick={() => this.props.history.push('/puntos')}
-            >
-              Mis puntos
-            </a>
           </div>
-         </li>
+        </li>
       );
     } else {
-      
       lista.push(
         <li key="loginModalKey" className="nav-item navbar-right">
           <a

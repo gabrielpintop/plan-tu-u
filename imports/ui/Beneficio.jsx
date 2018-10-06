@@ -148,7 +148,10 @@ class Beneficio extends Component {
         this.state.beneficio.puntosRequeridos > usuario.puntos)
     ) {
       return (
-        <div className="col-md-3 col-12 font-weight-bold text-right">
+        <div
+          className="col-lg-3 col-md-4 col-12 font-weight-bold text-right"
+          onClick={() => this.notificarPuntosFaltantes()}
+        >
           <button type="button" className="btn btn-outline-warning">
             Redimir - <b>{this.state.beneficio.puntosRequeridos}</b> puntos
           </button>
@@ -156,7 +159,7 @@ class Beneficio extends Component {
       );
     } else if (usuario && this.state.admin) {
       return (
-        <div className="col-md-3 col-12 font-weight-bold text-right">
+        <div className="col-lg-3 col-md-4 col-12 font-weight-bold text-right">
           <p>
             <b>Puntos:</b> {this.state.beneficio.puntosRequeridos}
           </p>
@@ -169,7 +172,7 @@ class Beneficio extends Component {
       this.state.beneficio.puntosRequeridos <= usuario.puntos
     ) {
       return (
-        <div className="col-md-3 col-12 font-weight-bold text-right">
+        <div className="col-lg-3 col-md-4 col-12 font-weight-bold text-right">
           <button
             type="button"
             className="btn btn-uniandes"
@@ -179,6 +182,21 @@ class Beneficio extends Component {
           </button>
         </div>
       );
+    }
+  }
+
+  notificarPuntosFaltantes() {
+    if (this.state.usuario) {
+      let puntosFaltantes =
+        this.state.beneficio.puntosRequeridos - this.state.usuario.puntos;
+
+      alert(
+        'Te faltan ' +
+          puntosFaltantes +
+          ' puntos para poder redimir este beneficio.'
+      );
+    } else {
+      alert('Debes iniciar sesión para redimir un beneficio.');
     }
   }
 
@@ -262,7 +280,7 @@ class Beneficio extends Component {
     return (
       <li className="list-group-item">
         <div className="row">
-          <div className="col-md-9 col-12">
+          <div className="col-lg-9 col-md-8 col-12">
             <p>{this.state.beneficio.beneficio}</p>
           </div>
           {this.mostrarDetallesPuntos()}

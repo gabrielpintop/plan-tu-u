@@ -38,8 +38,45 @@ export default class UsuarioDetail extends Component {
     });
   }
 
+  renderUsuario() {
+    Meteor.call(
+      'usuarios.buscarUsuario',
+      {
+        correo: this.state.correo
+      },
+      (err, res) => {
+        if (err) {
+          alert(err.error);
+        } else {
+          this.setState({
+            puntosUsuario: res.puntos
+          });
+        }
+      }
+    );
+  }
 
+  renderRedimidos() {
+    Meteor.call(
+      'redimidos.redimidosPublication',
+      {
+        token: this.state.token
+      },
+      (err, res) => {
+        if (err) {
+          alert(err.error);
+        } else {
+          this.setState({
+            redimidos: res
+          });
+        }
+      }
+    );
 
+    return redimidos.map(beneficio => (
+      <Redimido key={redimido._id} redimido={redimido} />
+    ));
+  }
 
   render() {
     return (
