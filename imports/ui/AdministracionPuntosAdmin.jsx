@@ -75,7 +75,6 @@ export default class AdministracionPuntosAdmin extends Component {
             <div className="col-12"> <BeneficiosRedimidosAdmin/> </div>
         </div>
       </div>
-      );
       </div>
     );
   }

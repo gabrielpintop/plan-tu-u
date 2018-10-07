@@ -164,7 +164,7 @@ class BeneficioRedimido extends Component {
                 {this.state.estado}
                 <br />
                 Redimido el {this.state.fechaRedimido.substring(0, 10)} a las{' '}
-                {this.state.fechaRedimido.substring(11, 20)}
+                {this.state.fechaRedimido.substring(10, 20)}
               </p>
             </div>
           </div>
@@ -194,7 +194,7 @@ class BeneficioRedimido extends Component {
               </p>
               <p>
                 <b>Redimido el </b> {this.state.fechaRedimido.substring(0, 10)}{' '}
-                a las {this.state.fechaRedimido.substring(11, 20)}
+                a las {this.state.fechaRedimido.substring(10, 20)}
               </p>
               <b className="text-warning">Contacto: </b>
               {this.mostrarContactoUsuario()}
@@ -216,7 +216,7 @@ class BeneficioRedimido extends Component {
         <div className="text-right">
           <button
             type="button"
-            className="btn btn-outline-warning"
+            className="btn btn-uniandes"
             onClick={this.toggleFormActualizarBeneficio.bind(this)}
           >
             <i className="far fa-edit" />

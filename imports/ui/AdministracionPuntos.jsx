@@ -53,7 +53,7 @@ export default class AdministracionPuntos extends Component {
 
   render() {
     return (
-            <div id="catalogoBeneficios" className="container-fluid">
+      <div id="catalogoBeneficios" className="container-fluid">
         <div className="row">
         <div className="col-12">
           <div className="bg-uniandes text-light">
