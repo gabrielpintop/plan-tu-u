@@ -9,18 +9,32 @@ class Navbar extends Component {
     super(props);
     this.state = {
       token: localStorage.getItem('PTUusuario'),
-      nombre: null
+      nombre: null,
+      admin: false
     };
   }
+
 
   componentDidMount() {
     Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
       if (err) {
         alert(err.error);
       } else if (res) {
-        this.setState({
-          nombre: res.nombre
-        });
+        console.log(res);
+
+        if (res.rol === 'adminPTU') {
+          console.log('Yes');
+          this.setState({
+            nombre:res.nombre,
+            admin: true,
+            usuario: res
+          });
+        } else {
+          this.setState({
+            nombre:res.nombre,
+            usuario: res
+          });
+        }
       }
     });
   }
@@ -31,7 +45,31 @@ class Navbar extends Component {
       token: null,
       nombre: null
     });
-    document.getElementById('inicio').click();
+    window.location.reload();
+  }
+
+  opcionAdminPuntos(){
+    if (!this.state.admin) {
+      return (
+        <a
+          id="verPuntosUs"
+          className="dropdown-item pointer"
+          onClick={() => this.props.history.push('/puntos')}
+        >
+        Mis puntos
+        </a>
+    );
+    } else {
+      return (
+        <a
+          id="verPuntosUs"
+          className="dropdown-item pointer"
+          onClick={() => this.props.history.push('/beneficiosRedimidos')}
+        >
+        Beneficios redimidos
+        </a>
+      );
+    }                
   }
 
   renderOpcionesNavbar() {
@@ -50,13 +88,7 @@ class Navbar extends Component {
             {this.state.nombre}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a
-              id="verPuntosUs"
-              className="dropdown-item pointer"
-              onClick={() => this.props.history.push('/puntos')}
-            >
-              Mis puntos
-            </a>
+            {this.opcionAdminPuntos()}
             <a
               className="dropdown-item pointer"
               onClick={() => this.cerrarSesion()}
@@ -100,7 +132,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-expand-md navbar-light bg-light py-md-2">
           <div className="container">
             <Link to={'/'} style={{ textDecoration: 'none' }}>
-              <div id="inicio" className="navbar-brand">
+              <div className="navbar-brand">
                 <img
                   src="/PTUUniandinoSiempre.png"
                   className="d-inline-block align-top"

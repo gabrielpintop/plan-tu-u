@@ -24,6 +24,7 @@ class App extends Component {
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
             <Route exact path="/puntos" component={AdministracionPuntos} />
+            <Route exact path="/beneficiosRedimidos" component={AdministracionPuntos} />
             <Route
               exact
               path="/obtencionDePuntos"
