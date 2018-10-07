@@ -46,7 +46,7 @@ class BeneficiosRedimidos extends Component {
         key={redimido._id}
         redimido={redimido}
         fechaRedimido= {redimido.fechaRedimido}
-        puntosRequeridos= {redimido.beneficio.puntosRequeridos}
+        puntosRedimidos= {redimido.puntosRedimidos}
       />
     ));
   }

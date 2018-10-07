@@ -76,6 +76,7 @@ Meteor.methods({
                         idUsuario: usuario.identificacion,
                         beneficio: beneficio.beneficio,
                         estado: "Notificado",
+                        puntosRedimidos: beneficio.puntosRequeridos,
                         fechaRedimido: fecha.toLocaleString()
                     });
 
