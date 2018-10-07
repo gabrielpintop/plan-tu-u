@@ -2,25 +2,39 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
-import UsuarioDetail from './UsuarioDetail.jsx';
+import AdministracionPuntos from './AdministracionPuntos.jsx';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       token: localStorage.getItem('PTUusuario'),
-      nombre: null
+      nombre: null,
+      admin: false
     };
   }
+
 
   componentDidMount() {
     Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
       if (err) {
         alert(err.error);
       } else if (res) {
-        this.setState({
-          nombre: res.nombre
-        });
+        console.log(res);
+
+        if (res.rol === 'adminPTU') {
+          console.log('Yes');
+          this.setState({
+            nombre:res.nombre,
+            admin: true,
+            usuario: res
+          });
+        } else {
+          this.setState({
+            nombre:res.nombre,
+            usuario: res
+          });
+        }
       }
     });
   }
@@ -32,6 +46,30 @@ class Navbar extends Component {
       nombre: null
     });
     window.location.reload();
+  }
+
+  opcionAdminPuntos(){
+    if (!this.state.admin) {
+      return (
+        <a
+          id="verPuntosUs"
+          className="dropdown-item pointer"
+          onClick={() => this.props.history.push('/puntos')}
+        >
+        Mis puntos
+        </a>
+    );
+    } else {
+      return (
+        <a
+          id="verPuntosUs"
+          className="dropdown-item pointer"
+          onClick={() => this.props.history.push('/beneficiosRedimidos')}
+        >
+        Beneficios redimidos
+        </a>
+      );
+    }                
   }
 
   renderOpcionesNavbar() {
@@ -50,13 +88,7 @@ class Navbar extends Component {
             {this.state.nombre}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a
-              id="verPuntosUs"
-              className="dropdown-item pointer"
-              onClick={() => this.props.history.push('/puntos')}
-            >
-              Mis puntos
-            </a>
+            {this.opcionAdminPuntos()}
             <a
               className="dropdown-item pointer"
               onClick={() => this.cerrarSesion()}

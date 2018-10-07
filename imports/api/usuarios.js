@@ -50,13 +50,13 @@ Meteor.methods({
 
   },
   'usuarios.buscarUsuario'({
-    correo,
+    identificacion,
   }) {
 
     let usuario = null;
 
     usuario = Usuarios.findOne({
-      correo: correo
+      identificacion: identificacion
     });
 
     return usuario;

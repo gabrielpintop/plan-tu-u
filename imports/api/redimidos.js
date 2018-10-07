@@ -31,7 +31,7 @@ if (Meteor.isServer) {
         let usuario = decodificarToken(token);
 
         if (usuario) {
-            if (usuario.rol === "adminPTU") {
+            if (usuario.rol === "uniandino") {
                 return Redimidos.find({
                     $or: [{
                         idUsuario: usuario.identificacion
@@ -79,6 +79,7 @@ Meteor.methods({
                         idUsuario: usuario.identificacion,
                         beneficio: beneficio.beneficio,
                         estado: "Notificado",
+                        puntosRedimidos: beneficio.puntosRequeridos,
                         fechaRedimido: fecha.toLocaleString()
                     });
 
