@@ -6,13 +6,13 @@ class Obtenido extends Component {
     super(props);
 
     this.state = {
-      obtenido: this.props.obtenido,
+      descripcion: this.props.descripcion,
     };
   }
 
   componentWillReceiveProps(nextProps) {
       this.setState({
-        obtenido: nextProps.obtenido,
+        descripcion: nextProps.descripcion,
       });
   }
 
@@ -21,7 +21,7 @@ class Obtenido extends Component {
       <li className="list-group-item">
         <div className="row">
           <div className="col-md-9 col-12">
-            <p>{this.state.obtenido}</p>
+            <p>{this.state.descripcion}</p>
           </div>
         </div>
       </li>

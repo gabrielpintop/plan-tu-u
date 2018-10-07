@@ -26,7 +26,7 @@ class BeneficioRedimido extends Component {
         <div className="row">
           <div className="col-md-9 col-12">
             <p><b>Beneficio: </b>&nbsp;{this.state.redimido.beneficio}</p>
-            <p><b>Puntos gastados: </b>{this.state.puntosRequeridos}</p>
+            <p><b>Puntos gastados: </b>{this.state.puntosRedimidos}</p>
             <p>Redimido el {this.state.fechaRedimido.substring(0, 10)} a las  {this.state.fechaRedimido.substring(11, 15)}</p>
           </div>
         </div>

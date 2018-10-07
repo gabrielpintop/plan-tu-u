@@ -76,6 +76,6 @@ class BeneficiosRedimidos extends Component {
 export default withTracker(() => {
   Meteor.subscribe('redimidos', localStorage.getItem('PTUusuario'));
   return {
-    redimidos: Redimidos.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
+    redimidos: Redimidos.find({}, { sort: { fechaRedimido: 1 } }).fetch()
   };
 })(BeneficiosRedimidos);

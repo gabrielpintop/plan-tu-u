@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Obtenidos } from '../api/obtenidos.js';
+import Obtenido from './Obtenido.jsx';
+
 
 class PObtenidos extends Component {
   constructor(props) {
@@ -38,12 +40,12 @@ class PObtenidos extends Component {
 
   
   renderObtenidos() {
-    let Obtenidos = this.props.obtenidos;
+    let obtenidos = this.props.obtenidos;
 
-    return Obtenidos.map(obtenido => (
+    return obtenidos.map(obtenido => (
       <Obtenido
         key={obtenido._id}
-        obtenido={obtenido}
+        descripcion={obtenido.descripcion}
       />
     ));
   }
@@ -71,8 +73,8 @@ class PObtenidos extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('Obtenidos', localStorage.getItem('PTUusuario'));
+  Meteor.subscribe('obtenidos', localStorage.getItem('PTUusuario'));
   return {
-    obtenidos: Obtenidos.find({}, { sort: { puntosRequeridos: 1 } }).fetch()
+    obtenidos: Obtenidos.find({}, { sort: { fechaCreacion: 1 } }).fetch()
   };
 })(PObtenidos);
