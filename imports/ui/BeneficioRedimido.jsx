@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Usuarios } from '../api/usuarios.js';
 
 class BeneficioRedimido extends Component {
   constructor(props) {
@@ -50,11 +51,16 @@ class BeneficioRedimido extends Component {
       return (
         <p>
           <b>Celular: </b>
-          {this.state.usuario.celular}
-          <br />
-          <b>Correo: </b>
-          {this.state.usuario.correo}
-          &nbsp;
+          <a href={'tel:' + this.state.usuario.celular}>
+            {this.state.usuario.celular}
+            &nbsp;
+          </a>
+          <address>
+            <b>Correo: </b>
+            <a href={'mailto:' + this.state.usuario.correo}>
+              {this.state.usuario.correo}
+            </a>
+          </address>
         </p>
       );
     }
