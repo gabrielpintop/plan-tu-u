@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Inicio from './Inicio.jsx';
 import AdministracionPuntos from './AdministracionPuntos.jsx';
+import AdministracionPuntosAdmin from './AdministracionPuntosAdmin.jsx';
 import Registro from './Registro.jsx';
 import Login from './Login.jsx';
 import Footer from './Footer.jsx';
@@ -24,7 +25,7 @@ class App extends Component {
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
             <Route exact path="/puntos" component={AdministracionPuntos} />
-            <Route exact path="/beneficiosRedimidos" component={AdministracionPuntos} />
+            <Route exact path="/beneficiosRedimidos" component={AdministracionPuntosAdmin} />
             <Route
               exact
               path="/obtencionDePuntos"

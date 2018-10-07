@@ -4,13 +4,15 @@ import BeneficioRedimido from './BeneficioRedimido.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Redimidos } from '../api/redimidos.js';
 
-class BeneficiosRedimidos extends Component {
+class BeneficiosRedimidosAdmin extends Component {
   constructor(props) {
     super(props);
+    this.usuarioDesasignarInput = React.createRef();
 
     this.state = {
       token: localStorage.getItem('PTUusuario'),
       admin: false,
+      filtroCodigo:false,
       usuario: null
     };
 
@@ -39,9 +41,16 @@ class BeneficiosRedimidos extends Component {
 
   
   renderRedimidos() {
-    let Redimidos = this.props.redimidos;
+    let redimidos = this.props.redimidos;
 
-    return Redimidos.map(redimido => (
+    if(this.state.filtroCodigo){
+      redimidos = redimidos.filter(
+        redimido =>
+           redimido.idUsuario ===  this.usuarioDesasignarInput
+      );
+    }
+    else{
+    return redimidos.map(redimido => (
       <BeneficioRedimido
         key={redimido._id}
         redimido={redimido}
@@ -51,22 +60,14 @@ class BeneficiosRedimidos extends Component {
         idUsuario={redimido.idUsuario}
         estado={redimido.estado}
       />
-    ));
+      ));
+    }
   }
+
 
   render() {
     return (
       <div id="catalogoRedimidos" className="row">
-        <div className="col-12">
-          <div>
-            <br />
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Beneficios Redimidos &nbsp;
-            </h3>
-            <br />
-          </div>
-          <hr />
-        </div>
         <div className="col-12">
           <ul className="list-group">{this.renderRedimidos()}</ul>
           <hr />
@@ -81,4 +82,4 @@ export default withTracker(() => {
   return {
     redimidos: Redimidos.find({}, { sort: { fechaRedimido: -1 } }).fetch()
   };
-})(BeneficiosRedimidos);
+})(BeneficiosRedimidosAdmin);
