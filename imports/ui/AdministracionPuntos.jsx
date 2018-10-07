@@ -61,7 +61,7 @@ mostrarContenidoUsuario() {
               &nbsp;
             </h1>
               <center>
-              <h2><i class="fas fa-certificate"></i> Te quedan {this.state.puntosUsuario} puntos <i class="fas fa-certificate"></i></h2>
+              <h2><i className="fas fa-certificate"></i> Te quedan {this.state.puntosUsuario} puntos <i className="fas fa-certificate"></i></h2>
               </center>
             <br />
             </div>

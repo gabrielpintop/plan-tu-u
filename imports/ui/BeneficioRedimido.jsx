@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Usuarios } from '../api/usuarios.js';
+
 
 class BeneficioRedimido extends Component {
   constructor(props) {
@@ -17,6 +19,40 @@ class BeneficioRedimido extends Component {
     };
   }
 
+    componentDidMount(){
+      const me = this;
+      Meteor.call(
+        'usuarios.buscarUsuario', this.state.idUsuario, function(err, res) {
+        if (err) {
+          alert(err.error);
+        } else {
+          me.setState({
+            celular: res.celular,
+            correo: res.correo
+          });
+        }
+      }
+    );
+  }
+
+
+   componentDidMount(){
+      const me = this;
+      Meteor.call(
+        'usuarios.buscarUsuario', this.state.idUsuario, function(err, res) {
+        if (err) {
+          alert(err.error);
+        } else {
+          me.setState({
+            celular: res.celular,
+            correo: res.correo
+          });
+        }
+      }
+    );
+  }
+
+
   componentWillReceiveProps(nextProps) {
       this.setState({
         redimido: nextProps.redimido,
@@ -28,28 +64,15 @@ class BeneficioRedimido extends Component {
       });
   }
 
-  buscarContactoUsuario(){
-      Meteor.call(
-      'usuarios.buscarUsuario', this.state.idUsuario,(err, res) => {
-        if (err) {
-          alert(err.error);
-        } else {
-          this.setState({
-            celular: res.celular,
-            correo: res.correo
-          });
-        }
-      }
-    );
-  }
 
   mostrarContactoUsuario(){
-    this.buscarContactoUsuario();
     return (
-      <p>
-        <b>Celular: </b>{this.state.celular}&nbsp;
-        <b>Correo: </b>{this.state.correo}&nbsp;
-      </p>
+      <div>
+        <b>Celular: </b><a href={"tel:"+this.state.celular}>{this.state.celular}&nbsp;</a>
+        <address>
+        <b>Correo: </b><a href={this.state.correo}>{this.state.correo}</a>
+        </address>
+      </div>
     );
   }
 
@@ -77,7 +100,7 @@ class BeneficioRedimido extends Component {
             <p><b>Beneficio: </b>&nbsp;{this.state.redimido.beneficio}</p>
             <p><b>Puntos gastados: </b>{this.state.puntosRedimidos}</p>
             <p><b>Redimido el </b> {this.state.fechaRedimido.substring(0, 10)} a las  {this.state.fechaRedimido.substring(11,20)}</p>
-            <b className="text-warning">Contacto: </b>{this.mostrarContactoUsuario()}>
+            <b className="text-warning">Contacto: </b>{this.mostrarContactoUsuario()}
           </div>
         </div>
       </li>
