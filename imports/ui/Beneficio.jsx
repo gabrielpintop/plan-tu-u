@@ -37,11 +37,14 @@ class Beneficio extends Component {
   }
 
   eliminarBeneficio() {
-    Meteor.call(
-      'beneficios.remover',
-      this.state.beneficio._id,
-      this.state.usuario
-    );
+    let confirmar = confirm('¿Está seguro que desea borrar este beneficio?');
+    if (confirmar) {
+      Meteor.call(
+        'beneficios.remover',
+        this.state.beneficio._id,
+        this.state.usuario
+      );
+    }
   }
 
   handleActualizarBeneficioSubmit(event) {

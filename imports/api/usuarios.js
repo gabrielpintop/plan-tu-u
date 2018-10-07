@@ -50,15 +50,13 @@ Meteor.methods({
 
   },
   'usuarios.buscarUsuario'({
-    identificacion,
+    identificacion
   }) {
+    check(identificacion, String);
 
-    let usuario = null;
-
-    usuario = Usuarios.findOne({
+    const usuario = Usuarios.findOne({
       identificacion: identificacion
     });
-
     return usuario;
   },
   'usuarios.validarUsuario'({

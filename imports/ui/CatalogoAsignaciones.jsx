@@ -66,27 +66,35 @@ class CatalogoAsignaciones extends Component {
   handleRemoverPuntos(event) {
     event.preventDefault();
 
-    Meteor.call(
-      'removidos.remover',
-      {
-        idUsuario: this.usuarioDesasignarInput.current.value,
-        idAsignacion: this.idAsignacionRemoverInput.current.value,
-        usuarioAsignador: this.state.usuario
-      },
-      (err, res) => {
-        if (err) {
-          alert(err.error);
-        } else {
-          this.usuarioDesasignarInput.current.value = '';
-          this.idAsignacionRemoverInput.current.value = '';
-          this.toggleFormRemoverPuntos();
-          alert(res);
-        }
-      }
+    let confirmar = confirm(
+      '¿Estás seguro que deseas removerle está asignación al usuario ' +
+        this.usuarioDesasignarInput.current.value +
+        '?'
     );
+    if (confirmar) {
+      Meteor.call(
+        'removidos.remover',
+        {
+          idUsuario: this.usuarioDesasignarInput.current.value,
+          idAsignacion: this.idAsignacionRemoverInput.current.value,
+          usuarioAsignador: this.state.usuario
+        },
+        (err, res) => {
+          if (err) {
+            alert(err.error);
+          } else {
+            this.usuarioDesasignarInput.current.value = '';
+            this.idAsignacionRemoverInput.current.value = '';
+            this.toggleFormRemoverPuntos();
+            alert(res);
+          }
+        }
+      );
+    }
   }
 
   handleCrearAsignacionSubmit(event) {
+    event.preventDefault();
     let item = this.itemAsignacionInput.current.value;
 
     Meteor.call('asignaciones.insertar', {
