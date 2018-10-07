@@ -5,6 +5,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
 import PObtenidos from './PObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx'
+import BeneficiosRedimidosAdmin from './BeneficiosRedimidos.jsx';
+
 
 export default class AdministracionPuntos extends Component {
   constructor(props) {
@@ -48,10 +50,10 @@ export default class AdministracionPuntos extends Component {
     });
   }
 
-mostrarContenidoUsuario() {
-    if (!this.state.admin) {
-      return (
-      <div id="catalogoBeneficios" className="container-fluid">
+
+  render() {
+    return (
+            <div id="catalogoBeneficios" className="container-fluid">
         <div className="row">
         <div className="col-12">
           <div className="bg-uniandes text-light">
@@ -83,41 +85,6 @@ mostrarContenidoUsuario() {
               <div className="tab-pane fade" id="puntosGanados" role="tabpanel" aria-labelledby="puntos-tab"><PObtenidos/></div>
               <div className="tab-pane fade" id="info" role="tabpanel" aria-labelledby="puntos-tab"><ConseguirPuntos/></div>
            </div>
-      </div>
-      );
-    } else {
-      return (
-      <div id="catalogoBeneficios" className="row">
-        <div className="row">
-        <div className="col-12">
-          <div className="bg-uniandes text-light">
-            <br />
-            <h1 className="text-center font-weight-bold">
-              &nbsp;Bienvenido {this.state.nombreUsuario}
-              &nbsp;
-            </h1>
-            <br />
-            </div>
-            <br />
-            <br />
-            <center>
-            <p>
-              En esta sección puedes ver la actividad de los egresados, sus redenciones de puntos y participaciones .
-            </p>
-            </center>
-        </div>
-            <div className="col-12"> <BeneficiosRedimidos/> </div>
-        </div>
-      </div>
-      );
-    }
-  }
-
-
-  render() {
-    return (
-      <div >
-        {this.mostrarContenidoUsuario()}
       </div>
     );
   }
