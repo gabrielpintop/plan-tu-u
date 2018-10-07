@@ -48,10 +48,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'redimidos.redimir'({
-        idRedimido,
+        idBeneficio,
         idUsuario
     }) {
-        check(idRedimido, String);
+        check(idBeneficio, String);
         check(idUsuario, String);
 
         const usuario = Usuarios.findOne({
@@ -61,7 +61,7 @@ Meteor.methods({
         if (usuario) {
 
             const beneficio = Beneficios.findOne({
-                _id: idRedimido
+                _id: idBeneficio
             });
 
             if (beneficio) {

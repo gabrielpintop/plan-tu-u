@@ -7,7 +7,7 @@ import { Redimidos } from '../api/redimidos.js';
 class BeneficiosRedimidosAdmin extends Component {
   constructor(props) {
     super(props);
-    this.usuarioDesasignarInput = React.createRef();
+    this.usuarioFiltroInput = React.createRef();
 
     this.state = {
       token: localStorage.getItem('PTUusuario'),
@@ -46,7 +46,7 @@ class BeneficiosRedimidosAdmin extends Component {
     if(this.state.filtroCodigo){
       redimidos = redimidos.filter(
         redimido =>
-           redimido.idUsuario ===  this.usuarioDesasignarInput
+           redimido.idUsuario ===  this.usuarioFiltroInput
       );
     }
     else{
@@ -71,6 +71,20 @@ class BeneficiosRedimidosAdmin extends Component {
     return (
       <div id="catalogoRedimidos" className="row">
         <div className="col-12">
+          <p>Busca los beneficios redimidos de un usuario (con su código):</p>  
+            <input  
+                id="usuarioFiltro"
+                className="form-control"
+                type="number"
+                ref={this.usuarioFiltroInput}
+                placeholder="Buscar.."
+                min="0"
+                minLength="5"
+                maxLength="15"
+                pattern="\d+"
+                required
+            />
+          <br/>
           <ul className="list-group">{this.renderRedimidos()}</ul>
           <hr />
         </div>
