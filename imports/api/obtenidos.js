@@ -35,7 +35,7 @@ if (Meteor.isServer) {
                         idUsuario: usuario.identificacion
                     }, ],
                 });
-            } else {
+            } else if (usuario.rol === "adminPTU") {
                 return Obtenidos.find();
             }
         } else {
@@ -77,9 +77,9 @@ Meteor.methods({
                         idUsuario: idUsuario,
                         nombreUsuario: usuarioBuscado.nombre,
                         descripcion: descripcion,
-                        puntosAsignados: puntosInsertar,
+                        puntos: puntosInsertar,
                         idAsignacion: idAsignacion,
-                        fechaCreacion: fecha.toLocaleString()
+                        fecha: fecha.toLocaleString()
                     }, (err, res) => {
                         if (err) {
                             throw new Meteor.Error("Se presentó un error al agregar el beneficio")

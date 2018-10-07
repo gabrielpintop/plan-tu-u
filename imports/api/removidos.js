@@ -34,13 +34,7 @@ if (Meteor.isServer) {
         let usuario = decodificarToken(token);
 
         if (usuario) {
-            if (usuario.rol === "uniandino") {
-                return Removidos.find({
-                    $or: [{
-                        idUsuario: usuario.identificacion
-                    }, ],
-                });
-            } else {
+            if (usuario.rol === "adminPTU") {
                 return Removidos.find();
             }
         } else {
@@ -73,15 +67,12 @@ Meteor.methods({
 
             if (obtenido) {
 
-                let puntosRemover = obtenido.puntosAsignados;
+                let puntosRemover = obtenido.puntos;
 
                 if (usuarioBuscado.puntos >= puntosRemover) {
                     try {
                         let descripcion = obtenido.descripcion;
-                        let puntosRemover = obtenido.puntosAsignados;
                         let fecha = new Date;
-
-                        puntosRemover = puntosRemover * -1;
 
                         Removidos.insert({
                             idAsignador: usuarioAsignador.identificacion,
@@ -89,13 +80,14 @@ Meteor.methods({
                             idUsuario: idUsuario,
                             nombreUsuario: usuarioBuscado.nombre,
                             descripcion: descripcion,
-                            puntosRemovidos: puntosRemover,
+                            puntos: puntosRemover,
                             idAsignacion: idAsignacion,
-                            fechaRemovido: fecha.toLocaleString()
+                            fecha: fecha.toLocaleString()
                         }, (err, res) => {
                             if (err) {
                                 throw new Meteor.Error("Se presentó un error al remover los puntos")
                             } else {
+                                puntosRemover = puntosRemover * -1;
                                 Usuarios.update({
                                     identificacion: idUsuario
                                 }, {
@@ -114,7 +106,7 @@ Meteor.methods({
                             }
                         });
 
-                        return "Se removieron " + (puntosRemover * -1) + " de los puntos de " + usuarioBuscado.nombre;
+                        return "Se removieron " + puntosRemover + " de los puntos de " + usuarioBuscado.nombre;
                     } catch (error) {
                         console.log(error);
                         throw new Meteor.Error(error + "");

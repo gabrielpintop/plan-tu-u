@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Obtenidos } from '../api/obtenidos.js';
-import Obtenido from './Obtenido.jsx';
+import Punto from './Punto.jsx';
 
-
-class PObtenidos extends Component {
+class PuntosObtenidos extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +13,6 @@ class PObtenidos extends Component {
       admin: false,
       usuario: null
     };
-
   }
 
   componentDidMount() {
@@ -38,35 +36,26 @@ class PObtenidos extends Component {
     });
   }
 
-  
   renderObtenidos() {
     let obtenidos = this.props.obtenidos;
 
     return obtenidos.map(obtenido => (
-      <Obtenido
-        key={obtenido._id}
-        descripcion={obtenido.descripcion}
-        puntosAsignados={obtenido.puntosAsignados}
-        fechaCreacion={obtenido.fechaCreacion}
-        idUsuario={obtenido.idUsuario}
-        idAsignador={obtenido.idAsignador}
-        admin={this.state.admin}
-      />
+      <Punto key={obtenido._id} punto={obtenido} admin={this.state.admin} />
     ));
   }
 
   mostrarContenidoUsuario() {
     if (!this.state.admin) {
       return (
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Ganaste puntos por: &nbsp;
-            </h3>
-    );
+        <h3 className="text-center font-weight-bold text-uniandes">
+          &nbsp;Ganaste puntos por: &nbsp;
+        </h3>
+      );
     } else {
       return (
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Participación de los egresados &nbsp;
-            </h3>
+        <h3 className="text-center font-weight-bold text-uniandes">
+          &nbsp;Puntos obtenidos por los egresados &nbsp;
+        </h3>
       );
     }
   }
@@ -75,16 +64,12 @@ class PObtenidos extends Component {
     return (
       <div id="catalogoObtenidos" className="row">
         <div className="col-12">
-          <div>
-            <br />
-             {this.mostrarContenidoUsuario()}
-            <br />
-          </div>
           <hr />
+          {this.mostrarContenidoUsuario()}
+          <br />
         </div>
         <div className="col-12">
           <ul className="list-group">{this.renderObtenidos()}</ul>
-          <hr />
         </div>
       </div>
     );
@@ -96,4 +81,4 @@ export default withTracker(() => {
   return {
     obtenidos: Obtenidos.find({}, { sort: { fechaCreacion: -1 } }).fetch()
   };
-})(PObtenidos);
+})(PuntosObtenidos);
