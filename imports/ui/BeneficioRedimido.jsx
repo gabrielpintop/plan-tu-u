@@ -19,27 +19,10 @@ class BeneficioRedimido extends Component {
     };
   }
 
-    componentDidMount(){
-      const me = this;
-      Meteor.call(
-        'usuarios.buscarUsuario', this.state.idUsuario, function(err, res) {
-        if (err) {
-          alert(err.error);
-        } else {
-          me.setState({
-            celular: res.celular,
-            correo: res.correo
-          });
-        }
-      }
-    );
-  }
-
-
    componentDidMount(){
       const me = this;
       Meteor.call(
-        'usuarios.buscarUsuario', this.state.idUsuario, function(err, res) {
+        'usuarios.buscarUsuario', me.state.idUsuario, function(err, res) {
         if (err) {
           alert(err.error);
         } else {
@@ -70,7 +53,7 @@ class BeneficioRedimido extends Component {
       <div>
         <b>Celular: </b><a href={"tel:"+this.state.celular}>{this.state.celular}&nbsp;</a>
         <address>
-        <b>Correo: </b><a href={this.state.correo}>{this.state.correo}</a>
+        <b>Correo: </b><a href={"mailto:"+this.state.correo}>{this.state.correo}</a>
         </address>
       </div>
     );
