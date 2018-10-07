@@ -11,16 +11,19 @@ import {
     Match
 } from 'meteor/check';
 
+import {
+    Beneficios
+} from './beneficios.js';
+
+import {
+    Usuarios
+} from './usuarios.js';
+
 const jwt = require('jsonwebtoken');
 
 export const Redimidos = new Mongo.Collection('redimidos');
 
-import {
-    Beneficios
-} from './beneficios.js';
-import {
-    Usuarios
-} from './usuarios.js';
+
 
 if (Meteor.isServer) {
 

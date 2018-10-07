@@ -121,7 +121,6 @@ class Registro extends Component {
                 id="registroInputIdentificacion"
                 ref={this.identificacionInput}
                 min="0"
-                name="username"
                 minLength="5"
                 maxLength="15"
                 pattern="\d+"
