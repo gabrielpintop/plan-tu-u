@@ -18,7 +18,9 @@ class BeneficioRedimido extends Component {
       actualizar: false
     };
 
-    this.toggleFormActualizarBeneficio = this.toggleFormActualizarBeneficio.bind(this);
+    this.toggleFormActualizarBeneficio = this.toggleFormActualizarBeneficio.bind(
+      this
+    );
     this.actualizarEstadoInput = React.createRef();
   }
 
@@ -35,10 +37,10 @@ class BeneficioRedimido extends Component {
     });
   }
 
-    handleActualizarBeneficioSubmit(event) {
+  handleActualizarBeneficioSubmit(event) {
     event.preventDefault();
     const estado = this.actualizarEstadoInput.current.value;
-    if ( estado === this.state.redimido.estado) {
+    if (estado === this.state.redimido.estado) {
       alert('Probel');
     } else {
       Meteor.call(
@@ -59,12 +61,11 @@ class BeneficioRedimido extends Component {
     }
   }
 
-    toggleFormActualizarBeneficio() {
+  toggleFormActualizarBeneficio() {
     this.setState({
       actualizar: !this.state.actualizar
     });
   }
-
 
   formActualizarBeneficioRedimido() {
     if (this.state.actualizar) {
@@ -77,20 +78,20 @@ class BeneficioRedimido extends Component {
               <label htmlFor={'puntos' + this.state.redimido._id}>
                 Nuevo estado
               </label>
-                  <select
-                  id={'puntos' + this.state.redimido._id}
-                  className="form-control"
-                  defaultValue={this.state.redimido.estado}
-                  ref={this.actualizarEstadoInput}
-                  required
-                  >
-                    <option value="Notificado">Notificado</option>
-                    <option value="Contactado">Contactado</option>
-                    <option value="En proceso">En proceso</option>
-                    <option value="Cancelado">Cancelado</option>
-                    <option value="Disfrutado">Disfrutado</option>
-                  </select>
-                </div>            
+              <select
+                id={'puntos' + this.state.redimido._id}
+                className="form-control"
+                defaultValue={this.state.redimido.estado}
+                ref={this.actualizarEstadoInput}
+                required
+              >
+                <option value="Notificado">Notificado</option>
+                <option value="Contactado">Contactado</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Cancelado">Cancelado</option>
+                <option value="Disfrutado">Disfrutado</option>
+              </select>
+            </div>
             <button type="submit" className="btn btn-outline-warning">
               <i className="far fa-edit" />
               &nbsp;Enviar
@@ -199,21 +200,20 @@ class BeneficioRedimido extends Component {
               <b className="text-warning">Contacto: </b>
               {this.mostrarContactoUsuario()}
             </div>
-              {this.mostrarEditarEstado()}
-              <br/>
-              {this.formActualizarBeneficioRedimido()}
+            {this.mostrarEditarEstado()}
+            <br />
+            {this.formActualizarBeneficioRedimido()}
           </div>
         </li>
       );
     }
   }
 
-    mostrarEditarEstado() {
+  mostrarEditarEstado() {
     let admin = [];
     if (this.state.admin) {
-
       admin.push(
-        <div className="text-right">
+        <div className="col-md-3 col-12 bg-red text-right">
           <button
             type="button"
             className="btn btn-uniandes"
@@ -229,10 +229,7 @@ class BeneficioRedimido extends Component {
   }
 
   render() {
-    return (
-      <div>
-       {this.mostrarContenidoUsuario()}
-    </div>);
+    return this.mostrarContenidoUsuario();
   }
 }
 
