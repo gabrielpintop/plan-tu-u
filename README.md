@@ -68,7 +68,7 @@ Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ , par
 
 - **Meteor** 
 
-Verificar que este instalado ejecutando "meteor --version" en el CMD o descargarlo de https://www.meteor.com/install (versión LTS)
+Verificar que este instalado ejecutando "meteor --version" en el CMD o descargarlo de https://www.meteor.com/install (versión LTS).
 Nota: Para usar Meteor en tu cmd necesitarás installar Chocolately, puedes hacerlo desde https://chocolatey.org/install
 
 - **Mongo DB**
