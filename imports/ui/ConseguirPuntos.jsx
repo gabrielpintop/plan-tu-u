@@ -13,25 +13,27 @@ class ConseguirPuntos extends Component {
         <div className="col-12">
           <div>
             <br />
-             <h3 className="text-center font-weight-bold text-warning">
-               &nbsp;¿Cómo obtener puntos?&nbsp;
-             </h3>
+            <h3 className="text-center font-weight-bold text-warning">
+              &nbsp;¿Cómo obtener puntos?&nbsp;
+            </h3>
             <br />
           </div>
           <hr />
         </div>
         <div className="col-12">
-           <p>
-           Para obtener puntos debe realizar ciertas actividades o participar en eventos de la universidad.
-           Nosotros clasificamos esas acciones en "Manifestación", "Interacción" y "Compromiso" y a partir 
-           de dichas categorías te asignamos unos puntos. 
-           </p>
-           <center>
-           Para más información de dichas actividades que te asignan puntos ingresa a 
+          <p>
+            Para obtener puntos debe realizar ciertas actividades o participar
+            en eventos de la universidad. Nosotros clasificamos esas acciones en
+            "Manifestación", "Interacción" y "Compromiso" y a partir de dichas
+            categorías te asignamos unos puntos.
+          </p>
+          <center>
+            Para más información de dichas actividades que te asignan puntos
+            ingresa a
             <Link to={'/obtencionDePuntos'} style={{ textDecoration: 'none' }}>
-                <a><b className="text-warning"> Catálogo de asignaciones </b></a>
+              <b className="text-warning"> Catálogo de asignaciones </b>
             </Link>
-           </center>
+          </center>
           <hr />
         </div>
       </div>

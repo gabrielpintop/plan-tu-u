@@ -62,7 +62,6 @@ class PuntosObtenidos extends Component {
     return (
       <div id="catalogoObtenidos" className="row">
         <div className="col-12">
-          <hr />
           {this.mostrarContenidoUsuario()}
           <br />
         </div>

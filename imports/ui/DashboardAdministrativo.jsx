@@ -350,6 +350,7 @@ class DashboardAdministrativo extends Component {
               role="tabpanel"
               aria-labelledby="beneficios-tab"
             >
+              <hr />
               <PuntosObtenidos />
             </div>
             <div

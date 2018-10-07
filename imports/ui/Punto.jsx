@@ -45,6 +45,8 @@ class Punto extends Component {
       return (
         <li className="list-group-item">
           <p>
+            <b>Fecha obtenido: </b> {this.state.punto.fecha}
+            <br />
             <b>Actividad: </b>
             {this.state.punto.descripcion}
             <br />¡ Ganaste{' '}

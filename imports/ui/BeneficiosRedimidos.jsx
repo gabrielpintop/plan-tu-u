@@ -54,18 +54,13 @@ class BeneficiosRedimidos extends Component {
     return (
       <div id="catalogoRedimidos" className="row">
         <div className="col-12">
-          <div>
-            <br />
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Beneficios Redimidos &nbsp;
-            </h3>
-            <br />
-          </div>
-          <hr />
+          <h3 className="text-center font-weight-bold text-uniandes">
+            &nbsp;Beneficios Redimidos &nbsp;
+          </h3>
+          <br />
         </div>
         <div className="col-12">
           <ul className="list-group">{this.renderRedimidos()}</ul>
-          <hr />
         </div>
       </div>
     );
