@@ -359,16 +359,13 @@ class CatalogoAsignaciones extends Component {
   renderAsignaciones() {
     let asignaciones = this.props.asignaciones;
     return asignaciones.map(asignacion => (
-      //   <Asignacion
-      //     key={asignacion._id}
-      //     asignacion={beneficio}
-      //     admin={this.state.admin}
-      //     asignacionesAUsuario={this.vecesAsignadaUsuario(asignacion.idAsignacion)}
-      //   />
-      <li className="list-group-item" key={asignacion._id}>
-        {/* {this.vecesAsignadaUsuario(asignacion.idAsignacion)} -{' '} */}
-        {asignacion.descripcion} - {asignacion.puntosAsignados}
-      </li>
+      <Asignacion
+        key={asignacion._id}
+        usuario={this.state.usuario}
+        asignacion={asignacion}
+        admin={this.state.admin}
+        asignaciones={this.vecesAsignadaUsuario(asignacion.idAsignacion)}
+      />
     ));
   }
 

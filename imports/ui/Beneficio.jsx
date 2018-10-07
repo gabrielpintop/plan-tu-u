@@ -55,7 +55,7 @@ class Beneficio extends Component {
       puntos === this.state.beneficio.puntosRequeridos &&
       beneficio === this.state.beneficio.beneficio
     ) {
-      alert('Probel');
+      alert('El beneficio no ha sido modificado');
     } else {
       let beneficioN = {
         beneficio: beneficio,
@@ -71,12 +71,11 @@ class Beneficio extends Component {
           if (err) {
             alert(err);
           } else {
-            // success!
+            alert('El beneficio se actualizó correctamente.');
+            this.toggleFormActualizarBeneficio();
           }
         }
       );
-
-      this.toggleFormActualizarBeneficio();
     }
   }
 

@@ -54,11 +54,74 @@ Meteor.methods({
         } catch (err) {
             throw new Meteor.Error(err);
         }
+    },
+    'asignaciones.remover'({
+        idAsignacion,
+        usuario
+    }) {
+        check(idAsignacion, String);
+        check(usuario, Object);
+
+        verificarPermisos(usuario.rol);
+
+        const asignacion = Asignaciones.findOne({
+            idAsignacion: idAsignacion
+        });
+
+        verificarExistenciaAsignacion(asignacion);
+
+        try {
+            Asignaciones.remove({
+                idAsignacion: idAsignacion
+            });
+            return "La asignación " + idAsignacion + " se eliminó correctamente";
+        } catch (error) {
+            throw new Meteor.Error("Se presentó un error eliminando la asignación.");
+        }
+
+    },
+    'asignaciones.actualizar'({
+        idAsignacion,
+        asignacionNueva,
+        usuario
+    }) {
+        check(idAsignacion, String);
+        check(asignacionNueva, Object);
+        check(usuario, Object);
+
+        verificarPermisos(usuario.rol);
+
+        const asignacion = Asignaciones.findOne({
+            idAsignacion: idAsignacion
+        });
+
+        verificarExistenciaAsignacion(asignacion);
+
+        try {
+            Asignaciones.update({
+                idAsignacion: idAsignacion
+            }, {
+                $set: {
+                    puntosAsignados: asignacionNueva.puntosAsignados,
+                    descripcion: asignacionNueva.descripcion
+                }
+            });
+
+            return "La asignación " + idAsignacion + " se actualizó correctamente";
+        } catch (error) {
+            throw new Meteor.Error(error);
+        }
     }
 });
 
 function verificarPermisos(rol) {
     if (rol !== "adminPTU") {
-        throw new Meteor.Error('No se encuentra autorizado para editar un beneficio');
+        throw new Meteor.Error('No se encuentra autorizado para realizar esta acción');
+    }
+}
+
+function verificarExistenciaAsignacion(asignacion) {
+    if (!asignacion) {
+        throw new Meteor.Error('No se encuentra la asignación a eliminar');
     }
 }
