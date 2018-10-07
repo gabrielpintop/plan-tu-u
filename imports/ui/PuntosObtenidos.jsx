@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Obtenidos } from '../api/obtenidos.js';
-import Obtenido from './Obtenido.jsx';
+import Punto from './Punto.jsx';
 
 class PuntosObtenidos extends Component {
   constructor(props) {
@@ -40,15 +40,7 @@ class PuntosObtenidos extends Component {
     let obtenidos = this.props.obtenidos;
 
     return obtenidos.map(obtenido => (
-      <Obtenido
-        key={obtenido._id}
-        descripcion={obtenido.descripcion}
-        puntosAsignados={obtenido.puntosAsignados}
-        fechaCreacion={obtenido.fechaCreacion}
-        idUsuario={obtenido.idUsuario}
-        idAsignador={obtenido.idAsignador}
-        admin={this.state.admin}
-      />
+      <Punto key={obtenido._id} punto={obtenido} admin={this.state.admin} />
     ));
   }
 

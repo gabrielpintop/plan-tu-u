@@ -71,7 +71,7 @@ export default class AdministracionPuntos extends Component {
             <ul className="nav nav-pills nav-fill" id="myTab" role="tablist">
               <li className="nav-item ">
                 <a
-                  className="nav-link black-buttons text-warning"
+                  className="nav-link black-buttons text-warning active"
                   id="beneficios-redimidos"
                   data-toggle="tab"
                   href="#beneficiosRedimidos"

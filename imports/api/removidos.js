@@ -67,12 +67,11 @@ Meteor.methods({
 
             if (obtenido) {
 
-                let puntosRemover = obtenido.puntosAsignados;
+                let puntosRemover = obtenido.puntos;
 
                 if (usuarioBuscado.puntos >= puntosRemover) {
                     try {
                         let descripcion = obtenido.descripcion;
-                        let puntosRemover = obtenido.puntosAsignados;
                         let fecha = new Date;
 
                         Removidos.insert({
@@ -81,9 +80,9 @@ Meteor.methods({
                             idUsuario: idUsuario,
                             nombreUsuario: usuarioBuscado.nombre,
                             descripcion: descripcion,
-                            puntosRemovidos: puntosRemover,
+                            puntos: puntosRemover,
                             idAsignacion: idAsignacion,
-                            fechaRemovido: fecha.toLocaleString()
+                            fecha: fecha.toLocaleString()
                         }, (err, res) => {
                             if (err) {
                                 throw new Meteor.Error("Se presentó un error al remover los puntos")
@@ -107,7 +106,7 @@ Meteor.methods({
                             }
                         });
 
-                        return "Se removieron " + (puntosRemover * -1) + " de los puntos de " + usuarioBuscado.nombre;
+                        return "Se removieron " + puntosRemover + " de los puntos de " + usuarioBuscado.nombre;
                     } catch (error) {
                         console.log(error);
                         throw new Meteor.Error(error + "");

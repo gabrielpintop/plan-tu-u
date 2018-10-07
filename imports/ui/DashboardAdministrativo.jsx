@@ -4,6 +4,7 @@ import { Asignaciones } from '../api/asignaciones.js';
 import { Obtenidos } from '../api/obtenidos';
 import { Removidos } from '../api/removidos';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
+import Punto from './Punto.jsx';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -12,6 +13,37 @@ class Dashboard extends Component {
     if (!localStorage.getItem('PTUusuario')) {
       this.props.history.push('/');
     }
+
+    this.state = {
+      admin: false,
+      token: localStorage.getItem('PTUusuario'),
+      usuario: null
+    };
+  }
+
+  componentDidMount() {
+    Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
+      if (err) {
+        alert(err.error);
+      } else if (res) {
+        if (res.rol === 'adminPTU') {
+          this.setState({
+            admin: true,
+            usuario: res
+          });
+        } else {
+          this.props.history.push('/');
+        }
+      }
+    });
+  }
+
+  renderRemovidos() {
+    let removidos = this.props.removidos;
+
+    return removidos.map(removido => (
+      <Punto key={removido._id} punto={removido} admin={this.state.admin} />
+    ));
   }
 
   render() {
@@ -74,7 +106,12 @@ class Dashboard extends Component {
               role="tabpanel"
               aria-labelledby="puntos-tab"
             >
-              <h2>2</h2>
+              <hr />
+              <h3 className="text-center font-weight-bold text-uniandes">
+                &nbsp;Puntos removidos a los egresados &nbsp;
+              </h3>
+              <br />
+              <ul className="list-group">{this.renderRemovidos()}</ul>
             </div>
           </div>
         </div>

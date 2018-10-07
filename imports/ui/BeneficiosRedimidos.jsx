@@ -13,7 +13,6 @@ class BeneficiosRedimidos extends Component {
       admin: false,
       usuario: null
     };
-
   }
 
   componentDidMount() {
@@ -37,7 +36,6 @@ class BeneficiosRedimidos extends Component {
     });
   }
 
-  
   renderRedimidos() {
     let Redimidos = this.props.redimidos;
 
@@ -45,8 +43,8 @@ class BeneficiosRedimidos extends Component {
       <BeneficioRedimido
         key={redimido._id}
         redimido={redimido}
-        fechaRedimido= {redimido.fechaRedimido}
-        puntosRedimidos= {redimido.puntosRedimidos}
+        fechaRedimido={redimido.fechaRedimido}
+        puntosRedimidos={redimido.puntosRedimidos}
         admin={this.state.admin}
         idUsuario={redimido.idUsuario}
         estado={redimido.estado}
