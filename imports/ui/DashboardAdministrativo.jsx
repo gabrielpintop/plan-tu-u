@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Asignaciones } from '../api/asignaciones.js';
 import { Obtenidos } from '../api/obtenidos';
 import { Removidos } from '../api/removidos';
-import PObtenidos from './PObtenidos.jsx';
+import PuntosObtenidos from './PuntosObtenidos.jsx';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class Dashboard extends Component {
               role="tabpanel"
               aria-labelledby="beneficios-tab"
             >
-              <PObtenidos />
+              <PuntosObtenidos />
             </div>
             <div
               className="tab-pane fade"

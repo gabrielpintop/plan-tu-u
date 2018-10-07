@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
-import PObtenidos from './PObtenidos.jsx';
+import PuntosObtenidos from './PuntosObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx';
 import BeneficiosRedimidosAdmin from './BeneficiosRedimidos.jsx';
 
@@ -124,7 +124,7 @@ export default class AdministracionPuntos extends Component {
             role="tabpanel"
             aria-labelledby="puntos-tab"
           >
-            <PObtenidos />
+            <PuntosObtenidos />
           </div>
           <div
             className="tab-pane fade"

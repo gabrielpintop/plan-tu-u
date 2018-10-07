@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Obtenidos } from '../api/obtenidos.js';
 import Obtenido from './Obtenido.jsx';
 
-class PObtenidos extends Component {
+class PuntosObtenidos extends Component {
   constructor(props) {
     super(props);
 
@@ -89,4 +89,4 @@ export default withTracker(() => {
   return {
     obtenidos: Obtenidos.find({}, { sort: { fechaCreacion: -1 } }).fetch()
   };
-})(PObtenidos);
+})(PuntosObtenidos);
