@@ -10,11 +10,16 @@ class BeneficioRedimido extends Component {
       redimido: this.props.redimido,
       fechaRedimido: this.props.fechaRedimido,
       puntosRedimidos: this.props.puntosRedimidos,
+      estado: this.props.estado,
       admin: this.props.admin,
       idUsuario: this.props.idUsuario,
-      estado: this.props.estado,
-      usuario: null
+      usuario: null,
+      usuarioLogueado: this.props.usuarioLogueado,
+      actualizar: false
     };
+
+    this.toggleFormActualizarBeneficio = this.toggleFormActualizarBeneficio.bind(this);
+    this.actualizarEstadoInput = React.createRef();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,10 +27,86 @@ class BeneficioRedimido extends Component {
       redimido: nextProps.redimido,
       fechaRedimido: nextProps.fechaRedimido,
       puntosRedimidos: nextProps.puntosRedimidos,
+      estado: nextProps.estado,
       admin: nextProps.admin,
       idUsuario: nextProps.idUsuario,
+      usuarioLogueado: nextProps.usuarioLogueado,
       estado: nextProps.estado
     });
+  }
+
+    handleActualizarBeneficioSubmit(event) {
+    event.preventDefault();
+    const estado = this.actualizarEstadoInput.current.value;
+    if ( estado === this.state.redimido.estado) {
+      alert('Probel');
+    } else {
+      Meteor.call(
+        'redimidos.actualizarEstado',
+        this.state.redimido._id,
+        estado,
+        this.state.usuarioLogueado,
+        (err, res) => {
+          if (err) {
+            alert(err);
+          } else {
+            // success!
+          }
+        }
+      );
+
+      this.toggleFormActualizarBeneficio();
+    }
+  }
+
+    toggleFormActualizarBeneficio() {
+    this.setState({
+      actualizar: !this.state.actualizar
+    });
+  }
+
+
+  formActualizarBeneficioRedimido() {
+    if (this.state.actualizar) {
+      return (
+        <div className="col-12">
+          <hr />
+          <h5>Actualizar estado beneficio redimido</h5>
+          <form onSubmit={this.handleActualizarBeneficioSubmit.bind(this)}>
+            <div className="form-group">
+              <label htmlFor={'puntos' + this.state.redimido._id}>
+                Nuevo estado
+              </label>
+                  <select
+                  id={'puntos' + this.state.redimido._id}
+                  className="form-control"
+                  defaultValue={this.state.redimido.estado}
+                  ref={this.actualizarEstadoInput}
+                  required
+                  >
+                    <option value="Notificado">Notificado</option>
+                    <option value="Contactado">Contactado</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Cancelado">Cancelado</option>
+                    <option value="Disfrutado">Disfrutado</option>
+                  </select>
+                </div>            
+            <button type="submit" className="btn btn-outline-warning">
+              <i className="far fa-edit" />
+              &nbsp;Enviar
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger ml-1"
+              onClick={this.toggleFormActualizarBeneficio}
+            >
+              <i className="far fa-times-circle" />
+              &nbsp;Cancelar
+            </button>
+          </form>
+        </div>
+      );
+    }
   }
 
   buscarContactoUsuario(idUsuario) {
@@ -109,20 +190,49 @@ class BeneficioRedimido extends Component {
                 {this.state.puntosRedimidos}
               </p>
               <p>
+                <b>Estado </b> {this.state.estado}
+              </p>
+              <p>
                 <b>Redimido el </b> {this.state.fechaRedimido.substring(0, 10)}{' '}
                 a las {this.state.fechaRedimido.substring(11, 20)}
               </p>
               <b className="text-warning">Contacto: </b>
               {this.mostrarContactoUsuario()}
             </div>
+              {this.mostrarEditarEstado()}
+              <br/>
+              {this.formActualizarBeneficioRedimido()}
           </div>
         </li>
       );
     }
   }
 
+    mostrarEditarEstado() {
+    let admin = [];
+    if (this.state.admin) {
+
+      admin.push(
+        <div className="text-right">
+          <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={this.toggleFormActualizarBeneficio.bind(this)}
+          >
+            <i className="far fa-edit" />
+            &nbsp;Cambiar estado
+          </button>
+        </div>
+      );
+    }
+    return admin;
+  }
+
   render() {
-    return <div>{this.mostrarContenidoUsuario()}</div>;
+    return (
+      <div>
+       {this.mostrarContenidoUsuario()}
+    </div>);
   }
 }
 

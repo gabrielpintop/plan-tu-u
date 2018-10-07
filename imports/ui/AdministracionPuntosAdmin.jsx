@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PObtenidos from './PObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx'
-import BeneficiosRedimidosAdmin from './BeneficiosRedimidos.jsx';
+import BeneficiosRedimidosAdmin from './BeneficiosRedimidosAdmin.jsx';
 
 
 export default class AdministracionPuntosAdmin extends Component {

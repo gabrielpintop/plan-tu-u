@@ -48,10 +48,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
     'redimidos.redimir'({
-        idBeneficio,
+        idRedimido,
         idUsuario
     }) {
-        check(idBeneficio, String);
+        check(idRedimido, String);
         check(idUsuario, String);
 
         const usuario = Usuarios.findOne({
@@ -61,7 +61,7 @@ Meteor.methods({
         if (usuario) {
 
             const beneficio = Beneficios.findOne({
-                _id: idBeneficio
+                _id: idRedimido
             });
 
             if (beneficio) {
@@ -93,8 +93,37 @@ Meteor.methods({
         } else {
             throw new Meteor.Error("No fue posible redimir el beneficio.")
         }
+    },
+        'redimidos.actualizarEstado'(idRedimido, estadoN, usuario) {
+        check(idRedimido, String);
+        check(estadoN, String);
+        check(usuario, Object);
+
+        verificarPermisos(usuario.rol);
+
+        const redimido = Redimidos.findOne(idRedimido);
+
+        verificarExistenciaRedimido(redimido);
+
+        Redimidos.update(idRedimido, {
+            $set: {
+                estado: estadoN
+            }
+        });
     }
 });
+
+function verificarPermisos(rol) {
+    if (rol !== "adminPTU") {
+        throw new Meteor.Error('No se encuentra autorizado para editar un beneficio');
+    }
+}
+
+function verificarExistenciaRedimido(redimido) {
+    if (!redimido) {
+        throw new Meteor.Error('No se encuentra el beneficio a actualizar');
+    }
+}
 
 function decodificarToken(token) {
     return token ? jwt.verify(token, 'shhhhhPTU') : null;

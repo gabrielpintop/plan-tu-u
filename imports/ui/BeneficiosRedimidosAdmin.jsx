@@ -56,9 +56,11 @@ class BeneficiosRedimidosAdmin extends Component {
         redimido={redimido}
         fechaRedimido= {redimido.fechaRedimido}
         puntosRedimidos= {redimido.puntosRedimidos}
+        estado={redimido.estado}
         admin={this.state.admin}
         idUsuario={redimido.idUsuario}
         estado={redimido.estado}
+        usuarioLogueado={this.state.usuario}
       />
       ));
     }
