@@ -76,7 +76,6 @@ export default class AdministracionPuntosAdmin extends Component {
             </div>
           </div>
         </div>
-        );
       </div>
     );
   }
