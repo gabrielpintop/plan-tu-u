@@ -357,9 +357,9 @@ class CatalogoAsignaciones extends Component {
       //     admin={this.state.admin}
       //     asignacionesAUsuario={this.vecesAsignadaUsuario(asignacion.idAsignacion)}
       //   />
-      <li key={asignacion._id}>
-        {this.vecesAsignadaUsuario(asignacion.idAsignacion)} -{' '}
-        {asignacion.descripcion}
+      <li className="list-group-item" key={asignacion._id}>
+        {/* {this.vecesAsignadaUsuario(asignacion.idAsignacion)} -{' '} */}
+        {asignacion.descripcion} - {asignacion.puntosAsignados}
       </li>
     ));
   }
