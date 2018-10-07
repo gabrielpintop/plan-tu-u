@@ -46,8 +46,29 @@ class PObtenidos extends Component {
       <Obtenido
         key={obtenido._id}
         descripcion={obtenido.descripcion}
+        puntosAsignados={obtenido.puntosAsignados}
+        fechaCreacion={obtenido.fechaCreacion}
+        idUsuario={obtenido.idUsuario}
+        idAsignador={obtenido.idAsignador}
+        admin={this.state.admin}
       />
     ));
+  }
+
+  mostrarContenidoUsuario() {
+    if (!this.state.admin) {
+      return (
+            <h3 className="text-center font-weight-bold text-warning">
+              &nbsp;Ganaste puntos por: &nbsp;
+            </h3>
+    );
+    } else {
+      return (
+            <h3 className="text-center font-weight-bold text-warning">
+              &nbsp;Participación de los egresados &nbsp;
+            </h3>
+      );
+    }
   }
 
   render() {
@@ -56,9 +77,7 @@ class PObtenidos extends Component {
         <div className="col-12">
           <div>
             <br />
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Has obtenido beneficios por: &nbsp;
-            </h3>
+             {this.mostrarContenidoUsuario()}
             <br />
           </div>
           <hr />

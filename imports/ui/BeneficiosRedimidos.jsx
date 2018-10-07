@@ -47,8 +47,27 @@ class BeneficiosRedimidos extends Component {
         redimido={redimido}
         fechaRedimido= {redimido.fechaRedimido}
         puntosRedimidos= {redimido.puntosRedimidos}
+        admin={this.state.admin}
+        idUsuario={redimido.idUsuario}
       />
     ));
+  }
+
+
+  mostrarContenidoUsuario() {
+    if (!this.state.admin) {
+      return (
+            <h3 className="text-center font-weight-bold text-warning">
+              &nbsp;Beneficios Redimidos &nbsp;
+            </h3>
+    );
+    } else {
+      return (
+            <h3 className="text-center font-weight-bold text-warning">
+              &nbsp;Actividad de redención de puntos &nbsp;
+            </h3>
+      );
+    }
   }
 
   render() {
@@ -57,9 +76,7 @@ class BeneficiosRedimidos extends Component {
         <div className="col-12">
           <div>
             <br />
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Beneficios Redimidos &nbsp;
-            </h3>
+              {this.mostrarContenidoUsuario()}
             <br />
           </div>
           <hr />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
-import UsuarioDetail from './UsuarioDetail.jsx';
+import AdministracionPuntos from './AdministracionPuntos.jsx';
 
 class Navbar extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class Navbar extends Component {
       token: null,
       nombre: null
     });
-    window.location.reload();
+    document.getElementById('inicio').click();
   }
 
   renderOpcionesNavbar() {
@@ -100,7 +100,7 @@ class Navbar extends Component {
         <nav className="navbar navbar-expand-md navbar-light bg-light py-md-2">
           <div className="container">
             <Link to={'/'} style={{ textDecoration: 'none' }}>
-              <div className="navbar-brand">
+              <div id="inicio" className="navbar-brand">
                 <img
                   src="/PTUUniandinoSiempre.png"
                   className="d-inline-block align-top"
