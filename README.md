@@ -41,7 +41,7 @@ asignar puntos a un determinado usuario.
 Buscamos fidelizar a los egresados uniandinos mediante un sistema de puntos e incentivos por su participacón activa en la universidad.
 
 ## Screenshot
-![Alt text](public/inicioPTU.PNG?raw=true "Screenshot de PTU")
+![Screenshot de la página](https://raw.githubusercontent.com/glpinto10/plan-tu-u/master/public/InicioPTU.PNG)
 
 ## Tecnologías utilizadas
 
