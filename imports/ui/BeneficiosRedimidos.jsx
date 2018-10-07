@@ -20,9 +20,7 @@ class BeneficiosRedimidos extends Component {
       if (err) {
         alert(err.error);
       } else if (res) {
-        console.log(res);
         if (res.rol === 'adminPTU') {
-          console.log('Yes');
           this.setState({
             admin: true,
             usuario: res

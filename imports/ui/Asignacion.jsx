@@ -195,7 +195,6 @@ class Asignacion extends Component {
   mostrarDetallesAdmin() {
     let admin = [];
     if (this.state.usuario && this.state.admin) {
-      console.log('Aca');
       let asignacion = this.state.asignacion;
       admin.push(
         <div className="col-12">

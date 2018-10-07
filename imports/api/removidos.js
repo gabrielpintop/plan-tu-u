@@ -108,7 +108,6 @@ Meteor.methods({
 
                         return "Se removieron " + puntosRemover + " de los puntos de " + usuarioBuscado.nombre;
                     } catch (error) {
-                        console.log(error);
                         throw new Meteor.Error(error + "");
                     }
                 } else {

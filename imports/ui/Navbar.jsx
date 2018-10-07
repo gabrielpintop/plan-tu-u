@@ -14,24 +14,20 @@ class Navbar extends Component {
     };
   }
 
-
   componentDidMount() {
     Meteor.call('usuarios.decodificar', this.state.token, (err, res) => {
       if (err) {
         alert(err.error);
       } else if (res) {
-        console.log(res);
-
         if (res.rol === 'adminPTU') {
-          console.log('Yes');
           this.setState({
-            nombre:res.nombre,
+            nombre: res.nombre,
             admin: true,
             usuario: res
           });
         } else {
           this.setState({
-            nombre:res.nombre,
+            nombre: res.nombre,
             usuario: res
           });
         }
@@ -48,7 +44,7 @@ class Navbar extends Component {
     window.location.reload();
   }
 
-  opcionAdminPuntos(){
+  opcionAdminPuntos() {
     if (!this.state.admin) {
       return (
         <a
@@ -56,9 +52,9 @@ class Navbar extends Component {
           className="dropdown-item pointer"
           onClick={() => this.props.history.push('/puntos')}
         >
-        Mis puntos
+          Mis puntos
         </a>
-    );
+      );
     } else {
       return (
         <a
@@ -66,10 +62,10 @@ class Navbar extends Component {
           className="dropdown-item pointer"
           onClick={() => this.props.history.push('/beneficiosRedimidos')}
         >
-        Beneficios redimidos
+          Beneficios redimidos
         </a>
       );
-    }                
+    }
   }
 
   renderOpcionesNavbar() {

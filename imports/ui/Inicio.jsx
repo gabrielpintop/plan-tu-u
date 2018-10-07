@@ -155,7 +155,6 @@ export default class Inicio extends Component {
   }
 
   render() {
-    console.log(this.state.cargando);
     if (this.state.cargando) {
       return (
         <LoadingScreen

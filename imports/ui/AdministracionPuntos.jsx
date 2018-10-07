@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
 import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx';
-import BeneficiosRedimidosAdmin from './BeneficiosRedimidos.jsx';
 
 export default class AdministracionPuntos extends Component {
   constructor(props) {
@@ -28,7 +25,6 @@ export default class AdministracionPuntos extends Component {
         alert(err.error);
       } else if (res) {
         if (res.rol === 'uniandino') {
-          console.log('EL USUARIO VIENDO EL DETAIL ES', res);
           this.setState({
             verPuntos: true,
             usuario: res,
