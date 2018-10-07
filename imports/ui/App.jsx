@@ -9,11 +9,7 @@ import Registro from './Registro.jsx';
 import Login from './Login.jsx';
 import Footer from './Footer.jsx';
 import CatalogoAsignaciones from './CatalogoAsignaciones.jsx';
-
-const options = {
-  timeout: 5000,
-  position: 'bottom center'
-};
+import DashboardAdministrativo from './DashboardAdministrativo.jsx';
 
 class App extends Component {
   render() {
@@ -25,7 +21,16 @@ class App extends Component {
             <Route exact path="/" component={Inicio} />
             <Route exact path="/beneficios" component={CatalogoBeneficios} />
             <Route exact path="/puntos" component={AdministracionPuntos} />
-            <Route exact path="/beneficiosRedimidos" component={AdministracionPuntosAdmin} />
+            <Route
+              exact
+              path="/dashboardAdministrativo"
+              component={DashboardAdministrativo}
+            />
+            <Route
+              exact
+              path="/beneficiosRedimidos"
+              component={AdministracionPuntosAdmin}
+            />
             <Route
               exact
               path="/obtencionDePuntos"

@@ -34,13 +34,7 @@ if (Meteor.isServer) {
         let usuario = decodificarToken(token);
 
         if (usuario) {
-            if (usuario.rol === "uniandino") {
-                return Removidos.find({
-                    $or: [{
-                        idUsuario: usuario.identificacion
-                    }, ],
-                });
-            } else {
+            if (usuario.rol === "adminPTU") {
                 return Removidos.find();
             }
         } else {
@@ -81,8 +75,6 @@ Meteor.methods({
                         let puntosRemover = obtenido.puntosAsignados;
                         let fecha = new Date;
 
-                        puntosRemover = puntosRemover * -1;
-
                         Removidos.insert({
                             idAsignador: usuarioAsignador.identificacion,
                             nombreAsignador: usuarioAsignador.nombre,
@@ -96,6 +88,7 @@ Meteor.methods({
                             if (err) {
                                 throw new Meteor.Error("Se presentó un error al remover los puntos")
                             } else {
+                                puntosRemover = puntosRemover * -1;
                                 Usuarios.update({
                                     identificacion: idUsuario
                                 }, {

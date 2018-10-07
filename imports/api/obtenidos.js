@@ -35,7 +35,7 @@ if (Meteor.isServer) {
                         idUsuario: usuario.identificacion
                     }, ],
                 });
-            } else {
+            } else if (usuario.rol === "adminPTU") {
                 return Obtenidos.find();
             }
         } else {

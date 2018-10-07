@@ -4,7 +4,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Obtenidos } from '../api/obtenidos.js';
 import Obtenido from './Obtenido.jsx';
 
-
 class PObtenidos extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,6 @@ class PObtenidos extends Component {
       admin: false,
       usuario: null
     };
-
   }
 
   componentDidMount() {
@@ -38,7 +36,6 @@ class PObtenidos extends Component {
     });
   }
 
-  
   renderObtenidos() {
     let obtenidos = this.props.obtenidos;
 
@@ -58,15 +55,15 @@ class PObtenidos extends Component {
   mostrarContenidoUsuario() {
     if (!this.state.admin) {
       return (
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Ganaste puntos por: &nbsp;
-            </h3>
-    );
+        <h3 className="text-center font-weight-bold text-uniandes">
+          &nbsp;Ganaste puntos por: &nbsp;
+        </h3>
+      );
     } else {
       return (
-            <h3 className="text-center font-weight-bold text-warning">
-              &nbsp;Participación de los egresados &nbsp;
-            </h3>
+        <h3 className="text-center font-weight-bold text-uniandes">
+          &nbsp;Puntos obtenidos por los egresados &nbsp;
+        </h3>
       );
     }
   }
@@ -75,16 +72,12 @@ class PObtenidos extends Component {
     return (
       <div id="catalogoObtenidos" className="row">
         <div className="col-12">
-          <div>
-            <br />
-             {this.mostrarContenidoUsuario()}
-            <br />
-          </div>
           <hr />
+          {this.mostrarContenidoUsuario()}
+          <br />
         </div>
         <div className="col-12">
           <ul className="list-group">{this.renderObtenidos()}</ul>
-          <hr />
         </div>
       </div>
     );
