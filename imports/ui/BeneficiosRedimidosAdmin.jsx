@@ -3,11 +3,16 @@ import { Meteor } from 'meteor/meteor';
 import BeneficioRedimido from './BeneficioRedimido.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Redimidos } from '../api/redimidos.js';
+import { withRouter } from 'react-router';
 
 class BeneficiosRedimidosAdmin extends Component {
   constructor(props) {
     super(props);
     this.usuarioFiltroInput = React.createRef();
+
+    if (!localStorage.getItem('PTUusuario')) {
+      this.props.history.push('/');
+    }
 
     this.state = {
       token: localStorage.getItem('PTUusuario'),
@@ -28,9 +33,7 @@ class BeneficiosRedimidosAdmin extends Component {
             usuario: res
           });
         } else {
-          this.setState({
-            usuario: res
-          });
+          this.props.history.push('/');
         }
       }
     });
@@ -198,6 +201,8 @@ class BeneficiosRedimidosAdmin extends Component {
     );
   }
 }
+
+BeneficiosRedimidosAdmin = withRouter(BeneficiosRedimidosAdmin);
 
 export default withTracker(() => {
   Meteor.subscribe('redimidos', localStorage.getItem('PTUusuario'));

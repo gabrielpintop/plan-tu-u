@@ -199,6 +199,7 @@ class Beneficio extends Component {
       );
     } else {
       alert('Debes iniciar sesión para redimir un beneficio.');
+      document.getElementById('botonParaIniciarSesion').click();
     }
   }
 

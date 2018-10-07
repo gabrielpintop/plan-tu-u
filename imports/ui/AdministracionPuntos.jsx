@@ -3,10 +3,15 @@ import { Meteor } from 'meteor/meteor';
 import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx';
+import { withRouter } from 'react-router';
 
-export default class AdministracionPuntos extends Component {
+class AdministracionPuntos extends Component {
   constructor(props) {
     super(props);
+
+    if (!localStorage.getItem('PTUusuario')) {
+      this.props.history.push('/');
+    }
 
     this.state = {
       verPuntos: false,
@@ -34,11 +39,7 @@ export default class AdministracionPuntos extends Component {
             redimidos: null
           });
         } else {
-          this.setState({
-            admin: true,
-            nombreUsuario: res.nombre,
-            usuario: res
-          });
+          this.props.history.push('/beneficiosRedimidos');
         }
       }
     });
@@ -135,3 +136,5 @@ export default class AdministracionPuntos extends Component {
     );
   }
 }
+
+export default withRouter(AdministracionPuntos);

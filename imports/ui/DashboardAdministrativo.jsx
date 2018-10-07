@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Asignaciones } from '../api/asignaciones.js';
-import { Obtenidos } from '../api/obtenidos';
 import { Removidos } from '../api/removidos';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import Punto from './Punto.jsx';
+import { withRouter } from 'react-router';
 
-class Dashboard extends Component {
+class DashboardAdministrativo extends Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +46,7 @@ class Dashboard extends Component {
             usuario: res
           });
         } else {
-          this.props.history.push('/');
+          this.props.history.push('/puntos');
         }
       }
     });
@@ -372,6 +372,8 @@ class Dashboard extends Component {
   }
 }
 
+DashboardAdministrativo = withRouter(DashboardAdministrativo);
+
 export default withTracker(() => {
   let token = localStorage.getItem('PTUusuario');
 
@@ -382,4 +384,4 @@ export default withTracker(() => {
     asignaciones: Asignaciones.find({}, { sort: { idAsignacion: 1 } }).fetch(),
     removidos: Removidos.find({}, { sort: { fecha: -1 } }).fetch()
   };
-})(Dashboard);
+})(DashboardAdministrativo);
