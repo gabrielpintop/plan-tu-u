@@ -79,6 +79,6 @@ class PuntosObtenidos extends Component {
 export default withTracker(() => {
   Meteor.subscribe('obtenidos', localStorage.getItem('PTUusuario'));
   return {
-    obtenidos: Obtenidos.find({}, { sort: { fechaCreacion: -1 } }).fetch()
+    obtenidos: Obtenidos.find({}, { sort: { fecha: -1 } }).fetch()
   };
 })(PuntosObtenidos);
