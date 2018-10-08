@@ -49,8 +49,6 @@ Buscamos fidelizar a los egresados uniandinos mediante un sistema de puntos e in
 
 ## Tecnologías utilizadas
 
-El proyecto fue desarrollado usando el stack MERN. 
-
 - **Mongo DB**: Se utilizo una base de datos no relacional de MongoDB que está desplegada en https://mlab.com/
 - **Meteor**: Una infraestructura web basada en JavaScript, que automatiza y simplifica el desarrollo de aplicaciones web que actúan en tiempo real. 
 Maneja toda la lógica y despliegue tanto del cliente como del servidor. https://www.meteor.com
@@ -58,7 +56,7 @@ Maneja toda la lógica y despliegue tanto del cliente como del servidor. https:/
 
 A su vez, se usaron varias dependencias instaladas por medio de NPM.
 
-- JSON Web TokeN
+- JSON Web Token
 - React-router-dom
 - Bootstrap
 
