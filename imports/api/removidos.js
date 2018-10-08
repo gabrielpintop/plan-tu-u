@@ -23,7 +23,6 @@ import {
     Obtenidos
 } from './obtenidos.js';
 
-
 const jwt = require('jsonwebtoken');
 
 export const Removidos = new Mongo.Collection('removidos');
@@ -72,8 +71,7 @@ Meteor.methods({
                 if (usuarioBuscado.puntos >= puntosRemover) {
                     try {
                         let descripcion = obtenido.descripcion;
-                        let fecha = new Date;
-
+                        puntosRemover = puntosRemover * -1;
                         Removidos.insert({
                             idAsignador: usuarioAsignador.identificacion,
                             nombreAsignador: usuarioAsignador.nombre,
@@ -82,12 +80,12 @@ Meteor.methods({
                             descripcion: descripcion,
                             puntos: puntosRemover,
                             idAsignacion: idAsignacion,
-                            fecha: fecha.toLocaleString()
+                            fecha: moment().format('DD/MM/YYYY - h:mm:ss a')
                         }, (err, res) => {
                             if (err) {
                                 throw new Meteor.Error("Se presentó un error al remover los puntos")
                             } else {
-                                puntosRemover = puntosRemover * -1;
+
                                 Usuarios.update({
                                     identificacion: idUsuario
                                 }, {
@@ -106,7 +104,7 @@ Meteor.methods({
                             }
                         });
 
-                        return "Se removieron " + puntosRemover + " de los puntos de " + usuarioBuscado.nombre;
+                        return "Se removieron " + (puntosRemover * -1) + " de los puntos de " + usuarioBuscado.nombre;
                     } catch (error) {
                         throw new Meteor.Error(error + "");
                     }

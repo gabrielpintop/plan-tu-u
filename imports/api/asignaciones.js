@@ -36,7 +36,7 @@ Meteor.methods({
 
         verificarPermisos(usuario.rol);
 
-        let fecha = new Date;
+        let fecha = moment().format('DD/MM/YYYY - h:mm:ss a');
 
         try {
 
@@ -47,7 +47,7 @@ Meteor.methods({
                 descripcion: descripcion,
                 idAsignacion: idAsignacion,
                 puntosAsignados: puntos,
-                fechaCreacion: fecha.toLocaleString()
+                fechaCreacion: fecha
             });
 
             return true;

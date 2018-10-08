@@ -30,29 +30,23 @@ class Punto extends Component {
                 {punto.idUsuario} - {punto.nombreUsuario}
               </p>
             </div>
-            <div className="col-md-6 text-left col-12 font-weight-bold">
-              {punto.idAsignacion}
+            <div className="col-md-6 text-right col-12">
+              <span className="font-weight-bold">
+                {punto.idAsignacion} | {punto.puntos} puntos
+              </span>
             </div>
-
-            <div className="col-md-10 col-12">
+            <div className=" col-12">
               <p>
                 <b>Actividad: </b>
                 {punto.descripcion}
               </p>
             </div>
-            <div className="col-md-2 col-12">
-              <p>
-                <b>Puntos asignados: </b>
-                {punto.puntos}
-              </p>
-            </div>
-            <div className="col-md-6 col-12">
-              Fecha: {punto.fecha.substring(0, 10)} a las{' '}
-              {punto.fecha.substring(11, 20)}
-              &nbsp;
-            </div>
             <div className="col-md-6 col-12">
               <b>Responsable: </b> {punto.idAsignador} - {punto.nombreAsignador}
+            </div>
+            <div className="col-md-6 col-12 text-right">
+              <b>Fecha: </b>
+              {punto.fecha}
             </div>
           </div>
         </li>

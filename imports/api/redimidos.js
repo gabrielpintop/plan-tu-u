@@ -73,14 +73,14 @@ Meteor.methods({
                         }
                     });
 
-                    let fecha = new Date;
+                    let fecha = moment().format('DD/MM/YYYY - h:mm:ss a');
 
                     Redimidos.insert({
                         idUsuario: usuario.identificacion,
                         beneficio: beneficio.beneficio,
                         estado: "Notificado",
                         puntosRedimidos: beneficio.puntosRequeridos,
-                        fechaRedimido: fecha.toLocaleString()
+                        fechaRedimido: fecha
                     });
 
                     return true;
@@ -94,7 +94,7 @@ Meteor.methods({
             throw new Meteor.Error("No fue posible redimir el beneficio.")
         }
     },
-        'redimidos.actualizarEstado'(idRedimido, estadoN, usuario) {
+    'redimidos.actualizarEstado'(idRedimido, estadoN, usuario) {
         check(idRedimido, String);
         check(estadoN, String);
         check(usuario, Object);

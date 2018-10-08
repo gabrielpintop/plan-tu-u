@@ -27,14 +27,14 @@ Meteor.methods({
 
         verificarPermisos(usuario.rol);
 
-        let fecha = new Date;
+        let fecha = moment().format('DD/MM/YYYY - h:mm:ss a');
 
         Beneficios.insert({
             idCreador: usuario.identificacion,
             nombreCreador: usuario.nombre,
             beneficio: beneficio,
             puntosRequeridos: puntos,
-            fechaCreacion: fecha.toLocaleString()
+            fechaCreacion: fecha
         });
     },
     'beneficios.remover'(idBeneficio, usuario) {

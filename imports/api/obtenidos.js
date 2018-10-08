@@ -69,7 +69,8 @@ Meteor.methods({
                 try {
                     let descripcion = asignacion.descripcion;
                     let puntosInsertar = asignacion.puntosAsignados;
-                    let fecha = new Date;
+
+                    let fecha = moment().format('DD/MM/YYYY - h:mm:ss a');
 
                     Obtenidos.insert({
                         idAsignador: usuarioAsignador.identificacion,
@@ -79,7 +80,7 @@ Meteor.methods({
                         descripcion: descripcion,
                         puntos: puntosInsertar,
                         idAsignacion: idAsignacion,
-                        fecha: fecha.toLocaleString()
+                        fecha: fecha
                     }, (err, res) => {
                         if (err) {
                             throw new Meteor.Error("Se presentó un error al agregar el beneficio")
