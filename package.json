@@ -10,6 +10,10 @@
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glpinto10/plan-tu-u.git"
+  },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
     "cryptr": "^4.0.0",
