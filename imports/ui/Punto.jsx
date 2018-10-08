@@ -23,21 +23,37 @@ class Punto extends Component {
     if (this.state.admin) {
       return (
         <li className="list-group-item">
-          <div className="col-12">
-            <p>
-              <b>Actividad: </b>
-              {punto.descripcion}
-            </p>
-            <p>
-              <b>Realizada por el usuario </b>
-              {punto.idUsuario}
-            </p>
-            <p>
-              <b>Puntos asignados: {punto.puntos} </b>
-              (el {punto.fecha.substring(0, 10)} a las{' '}
+          <div className="row">
+            <div className="col-md-6 col-12">
+              <p>
+                <b>Usuario: </b>
+                {punto.idUsuario} - {punto.nombreUsuario}
+              </p>
+            </div>
+            <div className="col-md-6 text-left col-12 font-weight-bold">
+              {punto.idAsignacion}
+            </div>
+
+            <div className="col-md-10 col-12">
+              <p>
+                <b>Actividad: </b>
+                {punto.descripcion}
+              </p>
+            </div>
+            <div className="col-md-2 col-12">
+              <p>
+                <b>Puntos asignados: </b>
+                {punto.puntos}
+              </p>
+            </div>
+            <div className="col-md-6 col-12">
+              Fecha: {punto.fecha.substring(0, 10)} a las{' '}
               {punto.fecha.substring(11, 20)}
-              &nbsp;por el administrador {punto.idAsignador})
-            </p>
+              &nbsp;
+            </div>
+            <div className="col-md-6 col-12">
+              <b>Responsable: </b> {punto.idAsignador} - {punto.nombreAsignador}
+            </div>
           </div>
         </li>
       );

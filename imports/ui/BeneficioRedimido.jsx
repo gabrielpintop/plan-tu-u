@@ -137,12 +137,10 @@ class BeneficioRedimido extends Component {
             {this.state.usuario.celular}
             &nbsp;
           </a>
-          <address>
-            <b>Correo: </b>
-            <a href={'mailto:' + this.state.usuario.correo}>
-              {this.state.usuario.correo}
-            </a>
-          </address>
+          <b>Correo: </b>
+          <a href={'mailto:' + this.state.usuario.correo}>
+            {this.state.usuario.correo}
+          </a>
         </p>
       );
     }
@@ -213,7 +211,10 @@ class BeneficioRedimido extends Component {
     let admin = [];
     if (this.state.admin) {
       admin.push(
-        <div className="col-md-3 col-12 bg-red text-right">
+        <div
+          key="elementoEditarEstado"
+          className="col-md-3 col-12 bg-red text-right"
+        >
           <button
             type="button"
             className="btn btn-uniandes"

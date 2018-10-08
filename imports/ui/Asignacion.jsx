@@ -197,12 +197,12 @@ class Asignacion extends Component {
     if (this.state.usuario && this.state.admin) {
       let asignacion = this.state.asignacion;
       admin.push(
-        <div className="col-12">
+        <div key="separadorAsignaciones" className="col-12">
           <hr />
         </div>
       );
       admin.push(
-        <div className="col-md-6 col-12">
+        <div key="informacionAsignacionAdmin" className="col-md-6 col-12">
           <p>
             <b>Creado por: </b> {asignacion.nombreCreador} -{' '}
             {asignacion.idCreador}
@@ -213,15 +213,11 @@ class Asignacion extends Component {
       );
 
       admin.push(
-        <div className="col-md-6 text-right col-12">
-          <button
-            type="button"
-            className="btn btn-primary mr-1 mb-2"
-            onClick={this.toggleFormActualizarAsignacion.bind(this)}
-          >
-            <i className="far fa-edit" />
-            &nbsp;Editar asignacion
-          </button>
+        <div
+          key="habilidadesEdicionAdmin"
+          className="col-md-6 text-right col-12"
+        >
+          {this.botonEdicion()}
           <button
             type="button"
             className="btn btn-danger ml-1 mb-2"
@@ -234,6 +230,21 @@ class Asignacion extends Component {
       );
     }
     return admin;
+  }
+
+  botonEdicion() {
+    if (!this.state.actualizar) {
+      return (
+        <button
+          type="button"
+          className="btn btn-primary mr-1 mb-2"
+          onClick={this.toggleFormActualizarAsignacion.bind(this)}
+        >
+          <i className="far fa-edit" />
+          &nbsp;Editar asignacion
+        </button>
+      );
+    }
   }
 
   render() {
