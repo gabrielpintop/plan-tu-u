@@ -137,6 +137,7 @@ class BeneficioRedimido extends Component {
             {this.state.usuario.celular}
             &nbsp;
           </a>
+          <br />
           <b>Correo: </b>
           <a href={'mailto:' + this.state.usuario.correo}>
             {this.state.usuario.correo}

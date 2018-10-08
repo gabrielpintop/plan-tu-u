@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Asignaciones } from '../api/asignaciones.js';
 import { Removidos } from '../api/removidos';
+import { Usuarios } from '../api/usuarios';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import Punto from './Punto.jsx';
 import { withRouter } from 'react-router';
@@ -152,25 +153,26 @@ class DashboardAdministrativo extends Component {
           <form onSubmit={this.handleAsignarPuntos.bind(this)}>
             <div className="form-group">
               <label htmlFor="usarioAsignar">Identificación del usuario</label>
-              <input
+              <select
                 id="usarioAsignar"
-                className="form-control"
-                type="number"
+                className="form-control pointer"
                 ref={this.usuarioAsignarInput}
-                min="0"
-                minLength="5"
-                maxLength="15"
-                pattern="\d+"
                 required
-              />
+              >
+                {this.mapUsuariosSistema()}
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="idAsignacionInput">Asignación de puntos</label>
-              <select className="form-control" ref={this.idAsignacionInput}>
+              <select
+                className="form-control pointer"
+                ref={this.idAsignacionInput}
+                required
+              >
                 {this.mapOpcionesAsignacion()}
               </select>
             </div>
-            <button type="submit" className="btn btn-uniandes mr-1">
+            <button type="submit" className="btn btn-success mr-1">
               <i className="far fa-check-circle" />
               &nbsp;Asignar puntos
             </button>
@@ -199,29 +201,27 @@ class DashboardAdministrativo extends Component {
               <label htmlFor="usuarioDesasignar">
                 Identificación del usuario
               </label>
-              <input
+              <select
                 id="usuarioDesasignar"
-                className="form-control"
-                type="number"
+                className="form-control pointer"
                 ref={this.usuarioDesasignarInput}
-                min="0"
-                minLength="5"
-                maxLength="15"
-                pattern="\d+"
                 required
-              />
+              >
+                {this.mapUsuariosSistema()}
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="desasignacionInput">Asignación de puntos</label>
               <select
                 id="desasignacionInput"
-                className="form-control"
+                className="form-control pointer"
                 ref={this.idAsignacionRemoverInput}
+                required
               >
                 {this.mapOpcionesAsignacion()}
               </select>
             </div>
-            <button type="submit" className="btn btn-uniandes mr-1">
+            <button type="submit" className="btn btn-success mr-1">
               <i className="fas fa-eraser" />
               &nbsp;Desasignar puntos
             </button>
@@ -248,6 +248,16 @@ class DashboardAdministrativo extends Component {
     return asignaciones.map(asignacion => (
       <option key={asignacion.idAsignacion} value={asignacion.idAsignacion}>
         {asignacion.idAsignacion} - {asignacion.puntosAsignados}
+      </option>
+    ));
+  }
+
+  mapUsuariosSistema() {
+    let usuarios = this.props.usuarios;
+
+    return usuarios.map(usuario => (
+      <option key={usuario.identificacion} value={usuario.identificacion}>
+        {usuario.identificacion} - {usuario.nombre}
       </option>
     ));
   }
@@ -378,11 +388,13 @@ DashboardAdministrativo = withRouter(DashboardAdministrativo);
 export default withTracker(() => {
   let token = localStorage.getItem('PTUusuario');
 
+  Meteor.subscribe('usuarios', token);
   Meteor.subscribe('asignaciones', token);
   Meteor.subscribe('removidos', token);
 
   return {
     asignaciones: Asignaciones.find({}, { sort: { idAsignacion: 1 } }).fetch(),
-    removidos: Removidos.find({}, { sort: { fecha: -1 } }).fetch()
+    removidos: Removidos.find({}, { sort: { fecha: -1 } }).fetch(),
+    usuarios: Usuarios.find({}, { sort: { identificacion: 1 } }).fetch()
   };
 })(DashboardAdministrativo);

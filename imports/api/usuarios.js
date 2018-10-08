@@ -17,6 +17,28 @@ const cryptr = new Cryptr('myTotalySecretKeyPTU');
 
 export const Usuarios = new Mongo.Collection('usuarios');
 
+if (Meteor.isServer) {
+
+  Meteor.publish('usuarios.identificacion', function usuariosPublication(identificacion) {
+    return Usuarios.find({
+      identificacion: identificacion
+    });
+  });
+
+  Meteor.publish('usuarios', function usuariosAdmin(token) {
+    const admin = decodificarToken(token);
+
+    if (admin.rol === "adminPTU") {
+      return Usuarios.find({
+        rol: "uniandino"
+      });
+    } else {
+      return [];
+    }
+
+  });
+}
+
 Meteor.methods({
   'usuarios.insertar'({
     nombre,

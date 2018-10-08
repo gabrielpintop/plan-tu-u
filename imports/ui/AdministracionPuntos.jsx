@@ -4,6 +4,7 @@ import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx';
 import { withRouter } from 'react-router';
+import PuntosActuales from './PuntosActuales';
 
 class AdministracionPuntos extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class AdministracionPuntos extends Component {
           this.setState({
             verPuntos: true,
             usuario: res,
+            identificacion: res.identificacion,
             puntosUsuario: res.puntos,
             nombreUsuario: res.nombre,
             correo: res.correo,
@@ -43,6 +45,12 @@ class AdministracionPuntos extends Component {
         }
       }
     });
+  }
+
+  puntosActuales() {
+    if (this.state.identificacion) {
+      return <PuntosActuales idUsuario={this.state.identificacion} />;
+    }
   }
 
   render() {
@@ -58,10 +66,10 @@ class AdministracionPuntos extends Component {
               </h1>
               <center>
                 <h2>
-                  <i className="fas fa-certificate" /> Te quedan{' '}
-                  {this.state.puntosUsuario} puntos{' '}
+                  <i className="fas fa-certificate" /> Te quedan puntos{' '}
                   <i className="fas fa-certificate" />
                 </h2>
+                {this.puntosActuales()}
               </center>
               <br />
             </div>
