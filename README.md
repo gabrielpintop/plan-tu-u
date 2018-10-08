@@ -87,3 +87,6 @@ Es necesario tenerlo para correr la aplicación localmente. Se puede descargar d
 no es la base de datos real.
 5) La aplicación será abierta de forma automática en http://localhost:3000/
 
+
+Esta página fue desarrollada por Gabriel Pinto Pineda y Vivian Gómez Cubillos y está listada bajo la licencia del MIT (ver archivo [LICENSE](https://github.com/glpinto10/plan-tu-u/blob/master/LICENSE) )
+
