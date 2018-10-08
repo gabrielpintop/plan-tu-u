@@ -83,7 +83,6 @@ class Login extends Component {
                     type="mail"
                     className="form-control"
                     id="loginInputCorreo"
-                    defaultValue="@uniandes.edu.co"
                     ref={this.correoInput}
                     minLength="4"
                     maxLength="35"

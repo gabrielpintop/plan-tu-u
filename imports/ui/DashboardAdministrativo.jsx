@@ -246,7 +246,11 @@ class DashboardAdministrativo extends Component {
     let asignaciones = this.props.asignaciones;
 
     return asignaciones.map(asignacion => (
-      <option key={asignacion.idAsignacion} value={asignacion.idAsignacion}>
+      <option
+        key={asignacion.idAsignacion}
+        value={asignacion.idAsignacion}
+        title={asignacion.descripcion}
+      >
         {asignacion.idAsignacion} - {asignacion.puntosAsignados}
       </option>
     ));
