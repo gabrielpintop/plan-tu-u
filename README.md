@@ -5,7 +5,7 @@ Esta aplicación busca fidelizar a los egresados uniandinos mediante un sistema 
 ## Integrantes del equipo
 - Gabriel Pinto
 
-  **Página personal:** https://glpinto10.github.io/gabriel-pinto-pineda/
+  **Página personal:** http://gp.ineffableinventions.com.co/
 
 - Vivian Gómez
 
