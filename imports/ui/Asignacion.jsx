@@ -136,9 +136,9 @@ class Asignacion extends Component {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-success mr-1">
+            <button type="submit" className="btn btn-outline-warning mr-1">
               <i className="far fa-edit" />
-              &nbsp;Editar asignación
+              &nbsp;Enviar
             </button>
             <button
               type="button"
@@ -216,7 +216,7 @@ class Asignacion extends Component {
         <div className="col-md-6 text-right col-12">
           <button
             type="button"
-            className="btn btn-primary mr-1 mb-2"
+            className="btn btn-uniandes mr-1 mb-2"
             onClick={this.toggleFormActualizarAsignacion.bind(this)}
           >
             <i className="far fa-edit" />

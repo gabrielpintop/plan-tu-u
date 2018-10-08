@@ -168,24 +168,82 @@ class CatalogoBeneficios extends Component {
 
   render() {
     return (
-      <div id="catalogoBeneficios" className="row">
-        <div className="col-12">
-          <div className="bg-uniandes text-light">
+      <div id="catalogoRedimidos" className="container-fluid">
+    <div className="col-12">
+        <div className="bg-uniandes text-light">
             <br />
             <h3 className="text-center font-weight-bold">
               &nbsp;Catálogo de Beneficios&nbsp;
             </h3>
             <br />
-          </div>
-          <hr />
         </div>
-        {this.formCrearBeneficio()}
-        <div className="col-12 text-center">{this.agregarBeneficio()}</div>
-
+        <hr />
+    </div>
+    {this.formCrearBeneficio()}
+    <div className="col-12 text-center">{this.agregarBeneficio()}</div>
+    <div className="row">
         <div className="col-12">
-          <div className="bg-gratuitos rounded-top">
-            <br />
-            <h4 className="text-center">
+            <ul className="nav nav-pills nav-fill" id="myTab" role="tablist">
+                <li className="nav-item ">
+                    <a
+                  className="nav-link black-buttons text-warning active"
+                  id="tab-gratuitos"
+                  data-toggle="tab"
+                  href="#gratuitos"
+                  role="tab"
+                  aria-controls="beneficios-gratuitos"
+                >
+                  Beneficios gratuitos
+                </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                  className="nav-link black-buttons text-warning"
+                  id="tab-bronce"
+                  data-toggle="tab"
+                  href="#bronce"
+                  role="tab"
+                  aria-controls="beneficios-bronce"
+                >
+                  Beneficios bronce
+                </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                  className="nav-link black-buttons text-warning"
+                  id="tab-plata"
+                  data-toggle="tab"
+                  href="#plata"
+                  role="tab"
+                  aria-controls="beneficios-plata"
+                  aria-selected="false"
+                >
+                  Beneficios plata
+                </a>
+                </li>
+                <li className="nav-item">
+                    <a
+                  className="nav-link black-buttons text-warning"
+                  id="tab-oro"
+                  data-toggle="tab"
+                  href="#oro"
+                  role="tab"
+                  aria-controls="beneficios-oro"
+                  aria-selected="false"
+                >
+                  Beneficios oro
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <hr/>
+    <div className="tab-content" id="myTabContent">
+        <div className="tab-pane fade show active" id="gratuitos" role="tabpanel" aria-labelledby="beneficios-tab">
+            <div className="col-12">
+                <div className="bg-gratuitos rounded-top">
+                    <br />
+                    <h4 className="text-center">
               <img
                 className="mw-100 img-fluid"
                 src="gratuito.png"
@@ -194,16 +252,17 @@ class CatalogoBeneficios extends Component {
               />
               &nbsp;Beneficios gratuitos&nbsp;
             </h4>
-            <br />
-          </div>
-          <ul className="list-group">{this.renderBeneficios(-1, 1)}</ul>
-          <hr />
+                    <br />
+                </div>
+                <ul className="list-group">{this.renderBeneficios(-1, 1)}</ul>
+                <hr />
+            </div>
         </div>
-
-        <div className="col-12">
-          <div className="bg-bronce rounded-top">
-            <br />
-            <h4 className="text-center">
+        <div className="tab-pane fade" id="bronce" role="tabpanel" aria-labelledby="puntos-tab">
+            <div className="col-12">
+                <div className="bg-bronce rounded-top">
+                    <br />
+                    <h4 className="text-center">
               <img
                 className="mw-100 img-fluid"
                 src="bronce.png"
@@ -212,16 +271,17 @@ class CatalogoBeneficios extends Component {
               />
               &nbsp;Beneficios bronce (1 - 100)&nbsp;
             </h4>
-            <br />
-          </div>
-          <ul className="list-group">{this.renderBeneficios(0, 101)}</ul>
-          <hr />
+                    <br />
+                </div>
+                <ul className="list-group">{this.renderBeneficios(0, 101)}</ul>
+                <hr />
+            </div>
         </div>
-
-        <div className="col-12">
-          <div className="bg-plata rounded-top">
-            <br />
-            <h4 className="text-center">
+        <div className="tab-pane fade" id="plata" role="tabpanel" aria-labelledby="puntos-tab">
+            <div className="col-12">
+                <div className="bg-plata rounded-top">
+                    <br />
+                    <h4 className="text-center">
               <img
                 className="mw-100 img-fluid"
                 src="plata.png"
@@ -230,16 +290,17 @@ class CatalogoBeneficios extends Component {
               />
               &nbsp;Beneficios plata (101 - 500)&nbsp;
             </h4>
-            <br />
-          </div>
-          <ul className="list-group">{this.renderBeneficios(100, 501)}</ul>
-          <hr />
+                    <br />
+                </div>
+                <ul className="list-group">{this.renderBeneficios(100, 501)}</ul>
+                <hr />
+            </div>
         </div>
-
-        <div className="col-12">
-          <div className="bg-oro rounded-top">
-            <br />
-            <h4 className="text-center">
+        <div className="tab-pane fade" id="oro" role="tabpanel" aria-labelledby="puntos-tab">
+            <div className="col-12">
+                <div className="bg-oro rounded-top">
+                    <br />
+                    <h4 className="text-center">
               <img
                 className="mw-100 img-fluid"
                 src="oro.png"
@@ -248,12 +309,14 @@ class CatalogoBeneficios extends Component {
               />
               &nbsp;&nbsp;Beneficios oro (+500)&nbsp;
             </h4>
-            <br />
-          </div>
-          <ul className="list-group">{this.renderBeneficios(500, -1)}</ul>
-          <hr />
+                    <br />
+                </div>
+                <ul className="list-group">{this.renderBeneficios(500, -1)}</ul>
+                <hr />
+            </div>
         </div>
-      </div>
+    </div>
+</div>
     );
   }
 }

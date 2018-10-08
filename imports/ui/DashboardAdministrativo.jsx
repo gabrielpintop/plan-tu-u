@@ -170,7 +170,7 @@ class Dashboard extends Component {
                 {this.mapOpcionesAsignacion()}
               </select>
             </div>
-            <button type="submit" className="btn btn-success mr-1">
+            <button type="submit" className="btn btn-uniandes mr-1">
               <i className="far fa-check-circle" />
               &nbsp;Asignar puntos
             </button>
@@ -221,7 +221,7 @@ class Dashboard extends Component {
                 {this.mapOpcionesAsignacion()}
               </select>
             </div>
-            <button type="submit" className="btn btn-success mr-1">
+            <button type="submit" className="btn btn-uniandes mr-1">
               <i className="fas fa-eraser" />
               &nbsp;Desasignar puntos
             </button>

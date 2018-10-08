@@ -60,8 +60,8 @@ export default class AdministracionPuntosAdmin extends Component {
               <center>
                 <p>
                   En esta sección puedes ver la actividad de los egresados
-                  mediante sus redenciones de puntos. Si desa contactar al
-                  usuario de click en el correo o teléfono.
+                  mediante sus redenciones de puntos. Si deseas contactar al
+                  usuario dale click en el correo o teléfono.
                 </p>
               </center>
             </div>

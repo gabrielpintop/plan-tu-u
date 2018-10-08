@@ -66,6 +66,7 @@ class BeneficiosRedimidosAdmin extends Component {
     }
 
     return redimidos.map(redimido => (
+    <div>
       <BeneficioRedimido
         key={redimido._id}
         redimido={redimido}
@@ -77,12 +78,14 @@ class BeneficiosRedimidosAdmin extends Component {
         estado={redimido.estado}
         usuarioLogueado={this.state.usuario}
       />
+    </div>
     ));
   }
 
   render() {
     return (
       <div id="catalogoRedimidos" className="container-fluid">
+      <hr/>
         <div className="row">
           <div className="col-12">
             <ul className="nav nav-pills nav-fill" id="myTab" role="tablist">
@@ -107,7 +110,7 @@ class BeneficiosRedimidosAdmin extends Component {
                   role="tab"
                   aria-controls="puntos-ganados"
                 >
-                  Contactado
+                  Contactados
                 </a>
               </li>
               <li className="nav-item">
@@ -126,19 +129,6 @@ class BeneficiosRedimidosAdmin extends Component {
               <li className="nav-item">
                 <a
                   className="nav-link black-buttons text-warning"
-                  id="tab-cancelado"
-                  data-toggle="tab"
-                  href="#cancelado"
-                  role="tab"
-                  aria-controls="puntos-ganados"
-                  aria-selected="false"
-                >
-                  Cancelado
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link black-buttons text-warning"
                   id="tab-Disfrutado"
                   data-toggle="tab"
                   href="#disfrutado"
@@ -146,7 +136,7 @@ class BeneficiosRedimidosAdmin extends Component {
                   aria-controls="puntos-ganados"
                   aria-selected="false"
                 >
-                  Disfrutado
+                  Disfrutados
                 </a>
               </li>
             </ul>
@@ -159,6 +149,13 @@ class BeneficiosRedimidosAdmin extends Component {
             role="tabpanel"
             aria-labelledby="beneficios-tab"
           >
+          <div>
+             <br />
+              <h3 className="text-center font-weight-bold text-warning">
+                &nbsp;Notificado &nbsp;
+              </h3>
+             <br />
+          </div>
             <ul className="list-group">{this.renderRedimidos('Notificado')}</ul>
           </div>
           <div
@@ -167,7 +164,14 @@ class BeneficiosRedimidosAdmin extends Component {
             role="tabpanel"
             aria-labelledby="puntos-tab"
           >
-            <ul className="list-group">{this.renderRedimidos('Contactado')}</ul>
+          <div>
+             <br />
+              <h3 className="text-center font-weight-bold text-warning">
+                &nbsp;Contactado &nbsp;
+              </h3>
+             <br />
+          </div>            
+          <ul className="list-group">{this.renderRedimidos('Contactado')}</ul>
           </div>
           <div
             className="tab-pane fade"
@@ -175,22 +179,31 @@ class BeneficiosRedimidosAdmin extends Component {
             role="tabpanel"
             aria-labelledby="puntos-tab"
           >
+          <div>
+             <br />
+              <h3 className="text-center font-weight-bold text-warning">
+                &nbsp;En proceso &nbsp;
+              </h3>
+             <br />
+          </div>
+
             <ul className="list-group">{this.renderRedimidos('En proceso')}</ul>
           </div>
-          <div
-            className="tab-pane fade"
-            id="cancelado"
-            role="tabpanel"
-            aria-labelledby="puntos-tab"
-          >
-            <ul className="list-group">{this.renderRedimidos('Cancelado')}</ul>
-          </div>
+
           <div
             className="tab-pane fade"
             id="disfrutado"
             role="tabpanel"
             aria-labelledby="puntos-tab"
           >
+          <div>
+             <br />
+              <h3 className="text-center font-weight-bold text-warning">
+                &nbsp;Disfrutado &nbsp;
+              </h3>
+             <br />
+          </div>
+
             <ul className="list-group">{this.renderRedimidos('Disfrutado')}</ul>
           </div>
         </div>
