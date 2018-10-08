@@ -21,20 +21,24 @@ Para ello, estos usuarios cuentan con 3 módulos iniciales: "Beneficios", "Punto
 - En "Beneficios", pueden encontrar el catálogo de posibles beneficios a redimir, con su respectiva descripción, categoría y
 cantidad de puntos. Basta con dar click en "redimir puntos" y el beneficio quedará registrado en el usuario.
 - En "Puntos", pueden encontrar toda la información relacionada con sus puntos, cuántos le quedan, los beneficios en los que los ha
-redimido, las actividades a partir de las cuales los ha obtenido y una breve información sobre cómo conseguir más.
-- En "Obtención de puntos" puede encontrar las actividades para ganar más puntos.
+redimido, las actividades a partir de las cuales los ha obtenido y una breve información sobre cómo conseguir más puntos.
+- En "Obtención de puntos" puede encontrar las actividades para ganar más puntos, o "asignaciones". 
+Específicamente, se muestra la lista de asignaciones posibles, su descripción, categoría, cantidad de puntos y las veces que el usuario
+la ha obtenido.
 
-Dichos puntos son asignados por los administradores del sistema, que son personas pertenecientes a la Vicerrectoría de la misma.
+Dichos puntos son asignados por los administradores del sistema, que son personas pertenecientes a la Vicerrectoría Académica de la Universidad.
 La cantidad de puntos que se asigna depende la actividad realizada por el uniandino.
 
-Este otro tipo de usuario, administrador, tiene acceso a 3 módulos: "Beneficios", "Beneficios redimidos" y "Obtención de puntos".
+Este otro tipo de usuario, administrador, tiene acceso a 4 módulos:"Dashboard administrativo","Beneficios", "Beneficios redimidos" y "Obtención de puntos".
+- En "Dashboard administrativo", el administrador puede ver el historial de puntos asignados y desasignados a determinados uniandinos.
+Adicionalmente, puede asignar y desasignar puntos a un determinado usuario, a partir de su código y la "asignación", la cual tiene una cantidad de puntos predeterminada.
 - En "Beneficios", pueden ver el catálogo de posibles beneficios a redimir y administrarlo, es decir, pueden editar, crear y eliminar 
 beneficios de la plataforma.
 - En "Beneficios redimidos", pueden encontrar toda la actividad de los egresados,es decir, los beneficios que han sido redimidos 
 con su descripción, fecha de redención, cantidad de puntos redimidos y el usuario que realizó la acción (código, correo y celular).
 - En "Obtención de puntos" puede encontrar las actividades para asignar puntos, las cuales denominamos "asignaciones" y tienen una
-descripción, una categoría y una cantidad de puntos a asignar. Por otro lado en esta sección pueden agregar nuevas de estas mismas y 
-asignar puntos a un determinado usuario.
+descripción, una categoría y una cantidad de puntos a asignar. Por otro lado en esta sección los administradores pueden agregar crear,
+nuevas asignaciones, editarlas y eliminarlas. 
 
 ## Objetivo
 
