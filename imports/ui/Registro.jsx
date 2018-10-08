@@ -165,7 +165,6 @@ class Registro extends Component {
               </button>
             </center>
           </form>
-          <hr />
         </div>
       </div>
     );

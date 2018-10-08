@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -34,6 +35,11 @@ class Login extends Component {
         }
       }
     );
+  }
+
+  irARegistro() {
+    document.getElementById('botonParaIniciarSesion').click();
+    this.props.history.push('/registro');
   }
 
   render() {
@@ -106,6 +112,16 @@ class Login extends Component {
                 </center>
                 <br />
               </form>
+              <p className="text-center">
+                ¿No tienes cuenta en Plan Tú U?
+                <br />
+                <span
+                  className="text-uniandes font-weight-bold pointer"
+                  onClick={this.irARegistro.bind(this)}
+                >
+                  Registrate
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -113,4 +129,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);

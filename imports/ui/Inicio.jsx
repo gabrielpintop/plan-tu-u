@@ -57,7 +57,10 @@ export default class Inicio extends Component {
 
     if (this.state.admin) {
       opciones.push(
-        <div className="col-md-6 col-12 text-center mt-5">
+        <div
+          key="elementoDashboardAdministrativo"
+          className="col-md-6 col-12 text-center mt-5"
+        >
           <Link
             to={'/dashboardAdministrativo'}
             style={{ textDecoration: 'none' }}
@@ -75,7 +78,10 @@ export default class Inicio extends Component {
         </div>
       );
       opciones.push(
-        <div className="col-md-6 col-12 text-center mt-5">
+        <div
+          key="elementoBeneficiosRedimidos"
+          className="col-md-6 col-12 text-center mt-5"
+        >
           <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
             <img
               className="mt-2 mb-2 text-center mx-auto justify-content-center align-self-center pointer"
@@ -90,14 +96,20 @@ export default class Inicio extends Component {
       );
       opciones.push(this.opcionBeneficios());
       opciones.push(
-        <div className="col-md-6 col-12 text-center mt-5 mb-5">
+        <div
+          key="elementoObtencionPuntosAdmin"
+          className="col-md-6 col-12 text-center mt-5 mb-5"
+        >
           {this.opcionObtencionPuntos()}
         </div>
       );
     } else {
       opciones.push(this.opcionBeneficios());
       opciones.push(
-        <div className="col-md-6 col-12 text-center mt-5">
+        <div
+          key="elementoPuntosUsuario"
+          className="col-md-6 col-12 text-center mt-5"
+        >
           <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
             <img
               className="mt-2 mb-2 text-center mx-auto justify-content-center align-self-center pointer"
@@ -111,7 +123,10 @@ export default class Inicio extends Component {
         </div>
       );
       opciones.push(
-        <div className="col-12 text-center mt-5 mb-5">
+        <div
+          key="elementoObteniconPuntosUsuario"
+          className="col-12 text-center mt-5 mb-5"
+        >
           {this.opcionObtencionPuntos()}
         </div>
       );
@@ -122,7 +137,10 @@ export default class Inicio extends Component {
 
   opcionBeneficios() {
     return (
-      <div className="col-md-6 col-12 text-center mt-5">
+      <div
+        key="elementoOpcionBeneficios"
+        className="col-md-6 col-12 text-center mt-5"
+      >
         <Link to={'/beneficios'} style={{ textDecoration: 'none' }}>
           <div className="s-300-px mx-auto text-center rounded-circle bg-uniandes d-flex">
             <img

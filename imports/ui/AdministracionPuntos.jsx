@@ -3,10 +3,15 @@ import { Meteor } from 'meteor/meteor';
 import BeneficiosRedimidos from './BeneficiosRedimidos.jsx';
 import PuntosObtenidos from './PuntosObtenidos.jsx';
 import ConseguirPuntos from './ConseguirPuntos.jsx';
+import { withRouter } from 'react-router';
 
-export default class AdministracionPuntos extends Component {
+class AdministracionPuntos extends Component {
   constructor(props) {
     super(props);
+
+    if (!localStorage.getItem('PTUusuario')) {
+      this.props.history.push('/');
+    }
 
     this.state = {
       verPuntos: false,
@@ -34,11 +39,7 @@ export default class AdministracionPuntos extends Component {
             redimidos: null
           });
         } else {
-          this.setState({
-            admin: true,
-            nombreUsuario: res.nombre,
-            usuario: res
-          });
+          this.props.history.push('/beneficiosRedimidos');
         }
       }
     });
@@ -64,6 +65,9 @@ export default class AdministracionPuntos extends Component {
               </center>
               <br />
             </div>
+            <hr />
+          </div>
+          <div className="col-12">
             <ul className="nav nav-pills nav-fill" id="myTab" role="tablist">
               <li className="nav-item ">
                 <a
@@ -103,35 +107,40 @@ export default class AdministracionPuntos extends Component {
                 </a>
               </li>
             </ul>
+            <hr />
           </div>
-        </div>
-        <div className="tab-content" id="myTabContent">
-          <div
-            className="tab-pane fade show active"
-            id="beneficiosRedimidos"
-            role="tabpanel"
-            aria-labelledby="beneficios-tab"
-          >
-            <BeneficiosRedimidos />
-          </div>
-          <div
-            className="tab-pane fade"
-            id="puntosGanados"
-            role="tabpanel"
-            aria-labelledby="puntos-tab"
-          >
-            <PuntosObtenidos />
-          </div>
-          <div
-            className="tab-pane fade"
-            id="info"
-            role="tabpanel"
-            aria-labelledby="puntos-tab"
-          >
-            <ConseguirPuntos />
+          <div className="col-12">
+            <div className="tab-content" id="myTabContent">
+              <div
+                className="tab-pane fade show active"
+                id="beneficiosRedimidos"
+                role="tabpanel"
+                aria-labelledby="beneficios-tab"
+              >
+                <BeneficiosRedimidos />
+              </div>
+              <div
+                className="tab-pane fade"
+                id="puntosGanados"
+                role="tabpanel"
+                aria-labelledby="puntos-tab"
+              >
+                <PuntosObtenidos />
+              </div>
+              <div
+                className="tab-pane fade"
+                id="info"
+                role="tabpanel"
+                aria-labelledby="puntos-tab"
+              >
+                <ConseguirPuntos />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default withRouter(AdministracionPuntos);

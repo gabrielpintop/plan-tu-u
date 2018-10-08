@@ -108,7 +108,7 @@ class Navbar extends Component {
         </li>
       );
       lista.push(
-        <li className="nav-item">
+        <li key="elementoRegistro" className="nav-item">
           <a
             id="botonParaRegistrarse"
             className="nav-link pointer"
