@@ -66,8 +66,8 @@ class AdministracionPuntos extends Component {
               </h1>
               <center>
                 <h3>
-                  <i className="fas fa-certificate" /> Te quedan puntos{' '}
-                  {this.puntosActuales()} puntos
+                  <i className="fas fa-certificate" />
+                  &nbsp;Te quedan puntos {this.puntosActuales()} puntos&nbsp;
                   <i className="fas fa-certificate" />
                 </h3>
               </center>
