@@ -26,7 +26,7 @@ redimido, las actividades a partir de las cuales los ha obtenido y una breve inf
 Específicamente, se muestra la lista de asignaciones posibles, su descripción, categoría, cantidad de puntos y las veces que el usuario
 la ha obtenido.
 
-Dichos puntos son asignados por los administradores del sistema, que son personas pertenecientes a la Vicerrectoría Académica de la Universidad.
+Dichos puntos son asignados por los administradores del sistema, que son personas pertenecientes a la Vicerrectoría de Desarrollo de la Universidad de los Andes
 La cantidad de puntos que se asigna depende la actividad realizada por el uniandino.
 
 Este otro tipo de usuario, administrador, tiene acceso a 4 módulos:"Dashboard administrativo","Beneficios", "Beneficios redimidos" y "Obtención de puntos".
