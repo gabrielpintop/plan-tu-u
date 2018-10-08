@@ -45,7 +45,7 @@ nuevas asignaciones, editarlas y eliminarlas.
 Buscamos fidelizar a los egresados uniandinos mediante un sistema de puntos e incentivos por su participacón activa en la universidad.
 
 ## Screenshot
-![Screenshot de la página](https://raw.githubusercontent.com/glpinto10/plan-tu-u/master/public/InicioPTU.PNG?style=centerme)
+![Screenshot de la página](https://raw.githubusercontent.com/glpinto10/plan-tu-u/master/public/InicioPTUAdmin.PNG?style=centerme)
 
 ## Tecnologías utilizadas
 
