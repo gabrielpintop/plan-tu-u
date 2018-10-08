@@ -136,6 +136,7 @@ class Beneficio extends Component {
               &nbsp;Cancelar
             </button>
           </form>
+          <hr />
         </div>
       );
     }
@@ -239,13 +240,15 @@ class Beneficio extends Component {
     let admin = [];
     if (this.state.usuario && this.state.admin) {
       let beneficio = this.state.beneficio;
+
       admin.push(
-        <div className="col-12">
+        <div key="separadorInfoAdmin" className="col-12">
           <hr />
         </div>
       );
+
       admin.push(
-        <div className="col-md-6 col-12">
+        <div key="informacionBeneficioAdmin" className="col-md-6 col-12">
           <p>
             <b>Creado por: </b> {beneficio.nombreCreador} -{' '}
             {beneficio.idCreador}
@@ -256,15 +259,11 @@ class Beneficio extends Component {
       );
 
       admin.push(
-        <div className="col-md-6 text-right col-12">
-          <button
-            type="button"
-            className="btn  btn-uniandes mr-1 mb-2"
-            onClick={this.toggleFormActualizarBeneficio.bind(this)}
-          >
-            <i className="far fa-edit" />
-            &nbsp;Editar beneficio
-          </button>
+        <div
+          key="botonesAdministracionAdmin"
+          className="col-md-6 text-right col-12"
+        >
+          {this.botonEdicion()}
           <button
             type="button"
             className="btn btn-danger ml-1 mb-2"
@@ -277,6 +276,21 @@ class Beneficio extends Component {
       );
     }
     return admin;
+  }
+
+  botonEdicion() {
+    if (!this.state.actualizar) {
+      return (
+        <button
+          type="button"
+          className="btn btn-uniandes mr-1 mb-2"
+          onClick={this.toggleFormActualizarBeneficio.bind(this)}
+        >
+          <i className="far fa-edit" />
+          &nbsp;Editar beneficio
+        </button>
+      );
+    }
   }
 
   render() {

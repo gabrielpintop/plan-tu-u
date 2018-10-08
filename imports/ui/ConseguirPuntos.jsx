@@ -24,9 +24,25 @@ class ConseguirPuntos extends Component {
           <p>
             Para obtener puntos debe realizar ciertas actividades o participar
             en eventos de la universidad. Nosotros clasificamos esas acciones en
-            "Manifestación", "Interacción" y "Compromiso" y a partir de dichas
+            "Manifestación", "Interacción", "Apropiación", "Compromiso" y a partir de dichas
             categorías te asignamos unos puntos.
           </p>
+            <p>
+             <i class="fas fa-people-carry text-warning"></i>&nbsp;
+             <b>Manifestación: </b> Actividades relacionadas con tu participación en voluntariados y redes de emprendedores.
+            </p>
+            <p>
+             <i class="fas fa-user-circle text-warning"></i>&nbsp;
+             <b>Interacción: </b> Actividades relacionadas con tu participación en la plataforma y regitro en los grupos de egresados de la universidad.
+            </p>
+            <p>
+             <i class="fas fa-users text-warning"></i>&nbsp;
+             <b>Compromiso: </b> Actividades relacionadas con donaciones y campañas.
+            </p>
+            <p> 
+             <i class="fas fa-layer-group text-warning"></i>&nbsp;
+             <b>Apropiación: </b> Actividades que cuantifican tu actividad como egresado, por ejemplo qué tanto participas en el Programa de Egresados.
+            </p>
           <center>
             Para más información de dichas actividades que te asignan puntos
             ingresa a
