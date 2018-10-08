@@ -62,7 +62,7 @@ A su vez, se usaron varias dependencias instaladas por medio de NPM.
 
 Entre otras que pueden ser observadas en los package.json de la aplicación.
 
-Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ , para acceder a ella se puede ingrasar a https://plan-tu-u.herokuapp.com/
+Finalmente, la aplicación se encuentra despleagada en https://heroku.com/ , para acceder a ella se puede ingresar a https://plan-tu-u.herokuapp.com/
 
 ## Instructivo para ejecución
 
