@@ -7,17 +7,11 @@ import {
 import {
     check
 } from 'meteor/check';
-import {
-    Match
-} from 'meteor/check';
+import {Match} from 'meteor/check'; // Match no utilizado
+import {Usuarios} from './usuarios.js';
+import {Asignaciones} from './asignaciones.js';
+/* dcagua10: Los imports realizados son funcionales pero recomiendo realizar los imports en una linea cada uno puesto que hace el codigo mas compacto*/
 
-import {
-    Usuarios
-} from './usuarios.js';
-
-import {
-    Asignaciones
-} from './asignaciones.js';
 
 const jwt = require('jsonwebtoken');
 
