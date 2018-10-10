@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-
+//falta documentar, de esta forma alguien externo puede entender mejor el codigo
 class Beneficio extends Component {
   constructor(props) {
     super(props);
