@@ -9,7 +9,7 @@ Esta aplicación busca fidelizar a los egresados uniandinos mediante un sistema 
 
 - Vivian Gómez
 
-  **Página personal:** https://viviangomez.github.io/proyect1_mypersonalpage/
+  **Página personal:** https://viviangomez.github.io/viviangomez/
 
 ## Links de importancia
 
