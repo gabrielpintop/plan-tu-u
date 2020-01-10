@@ -1,24 +1,11 @@
-import {
-    Meteor
-} from 'meteor/meteor';
-import {
-    Mongo
-} from 'meteor/mongo';
-import {
-    check
-} from 'meteor/check';
-import {
-    Match
-} from 'meteor/check';
-
-import {
-    Beneficios
-} from './beneficios.js';
-
-import {
-    Usuarios
-} from './usuarios.js';
-
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
+import {check} from 'meteor/check';
+import {Match} from 'meteor/check'; // Match no utilizado
+import {Beneficios} from './beneficios.js';
+import {Usuarios} from './usuarios.js';
+/* dcagua10: Los imports realizados son funcionales pero recomiendo realizar los imports en una linea cada uno puesto que hace el codigo mas compacto
+*/
 const jwt = require('jsonwebtoken');
 
 export const Redimidos = new Mongo.Collection('redimidos');

@@ -1,27 +1,12 @@
-import {
-    Meteor
-} from 'meteor/meteor';
-import {
-    Mongo
-} from 'meteor/mongo';
-import {
-    check
-} from 'meteor/check';
-import {
-    Match
-} from 'meteor/check';
-
-import {
-    Usuarios
-} from './usuarios.js';
-
-import {
-    Asignaciones
-} from './asignaciones.js';
-
-import {
-    Obtenidos
-} from './obtenidos.js';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
+import {check} from 'meteor/check';
+import {Match} from 'meteor/check'; // Match no usado
+import {Usuarios} from './usuarios.js';
+import {Asignaciones} from './asignaciones.js'; // Componente Asignaciones declarado pero no usado
+import {Obtenidos} from './obtenidos.js';
+/* dcagua10: Los imports realizados son funcionales pero recomiendo realizar los imports en una linea cada uno puesto que hace el codigo mas compacto
+*/
 
 const jwt = require('jsonwebtoken');
 

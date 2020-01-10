@@ -1,15 +1,8 @@
-import {
-  Meteor
-} from 'meteor/meteor';
-import {
-  Mongo
-} from 'meteor/mongo';
-import {
-  check
-} from 'meteor/check';
-import {
-  Match
-} from 'meteor/check';
+import {Meteor} from 'meteor/meteor';
+import {Mongo} from 'meteor/mongo';
+import {check} from 'meteor/check';
+import {Match} from 'meteor/check'; //Match no utilizado
+/* dcagua10: Los imports realizados son funcionales pero recomiendo realizar los imports en una linea cada uno puesto que hace el codigo mas compacto*/
 
 const jwt = require('jsonwebtoken');
 const Cryptr = require('cryptr');
