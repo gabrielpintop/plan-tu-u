@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { withRouter, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import AdministracionPuntos from './AdministracionPuntos.jsx';
-
+//las imagenes se demoran en cargar, usted puede seguir bajando el tamaño usando Illustrator o algunas paginas de internet que bajan la calidad a la misma
 class Navbar extends Component {
   constructor(props) {
     super(props);
